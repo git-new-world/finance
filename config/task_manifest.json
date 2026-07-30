@@ -1,0 +1,2092 @@
+{
+  "metadata": {
+    "schema_version": "v6.task_manifest.1",
+    "idea_id": "IDEA-20260730073439-OMBY9T",
+    "project_id": "finance",
+    "manifest_id": "IDEA-20260730073439-OMBY9T-task-manifest",
+    "generated_at": "2026-07-30T10:41:33.583+03:00",
+    "source_files_used": [
+      {
+        "file_type": "page_function_design",
+        "uri": "page_function_design.md",
+        "required": true
+      },
+      {
+        "file_type": "development_route",
+        "uri": "development_route.json",
+        "required": true
+      },
+      {
+        "file_type": "engineering_baseline",
+        "uri": "engineering_baseline.json",
+        "required": true
+      },
+      {
+        "file_type": "page_function_acceptance",
+        "uri": "page_function_acceptance.json",
+        "required": true
+      }
+    ],
+    "batch_id": ""
+  },
+  "status": {
+    "manifest_generation_status": "ready",
+    "blocking_issues": []
+  },
+  "execution_policy": {
+    "executor": "Tasker",
+    "parallel_dispatch_allowed": true,
+    "parallel_safety_rule": "同批任务不能修改相同页面、模块、路由、共享配置或同一基础设施装配面。",
+    "context_rule": "每个任务只读取工程基线、验收项、允许路径、只读入口和自身上下文所需的最小内容。"
+  },
+  "tasks": [
+    {
+      "task_id": "TASK-001",
+      "task_index": 0,
+      "name": "系统管理：配置与日志",
+      "display_label": "管理-系统与日志",
+      "description": "开发系统设置（PAGE-015）、数据源管理（PAGE-016）和操作日志（PAGE-017）页面及其后端API，包括记账周期、报税日期、预警阈值、外部数据源配置以及用户操作日志的记录与查询。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "系统管理模块的整体设置和数据源管理以及操作日志功能。",
+      "page_ref": "PAGE-015, PAGE-016, PAGE-017",
+      "module_id": "ALL",
+      "open_source_modules": [],
+      "priority": "P0",
+      "allowed_paths": [
+        "backend/apps/system/",
+        "frontend/src/features/system/",
+        "frontend/src/components/",
+        "backend/app/modules/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-001_5049",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-001_5049",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-001_5049",
+          "command": "npm run test --prefix frontend -- --testPathPattern=system",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-001_5049",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/system/views.py",
+        "backend/apps/system/urls.py",
+        "backend/apps/system/models.py",
+        "backend/apps/system/serializers.py",
+        "backend/apps/system/tests/",
+        "frontend/src/features/system/SettingsPage.tsx",
+        "frontend/src/features/system/DataSourcePage.tsx",
+        "frontend/src/features/system/LogsPage.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-026-AC-01",
+        "FEAT-026-AC-02",
+        "FEAT-027-AC-01",
+        "FEAT-027-AC-02",
+        "FEAT-028-AC-01",
+        "FEAT-028-AC-02",
+        "PAGE-015-MainView",
+        "PAGE-016-MainView",
+        "PAGE-017-MainView"
+      ],
+      "dependencies": [],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/system/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/system/routes.ts"
+        },
+        {
+          "type": "env_requirement",
+          "target": ".env.example",
+          "operation": "create",
+          "source": ""
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test"
+      ],
+      "task_goal": "完成系统管理模块的配置功能，包括系统参数配置、外部数据源管理和操作日志记录查询。",
+      "task_boundary": "不做用户权限管理（由框架处理），不做多租户隔离，不做日志的实时流处理。",
+      "tasker_instructions": "实现三个页面及其后端API，确保所有字段符合验收标准，敏感字段使用掩码，操作日志记录所有用户操作。",
+      "acceptance_focus": "系统设置保存生效、数据源测试连接成功、操作日志完整可筛选导出。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    },
+    {
+      "task_id": "TASK-002",
+      "task_index": 1,
+      "name": "智能记账模块集成",
+      "display_label": "记账-集成Transformers",
+      "description": "集成HuggingFace Transformers用于交易性质分类和会计科目推荐，同时开发银行流水同步适配器（FEAT-001）。创建适配器目录 backend/integrations/bank_stream/ 和 backend/integrations/transformers_voucher/。",
+      "development_mode": "module_integration",
+      "baseline_profile": "module_integration",
+      "task_scope": "开源模块集成：transformers用于AI推理，银行流水对接适配器实现同步功能。",
+      "page_ref": "PAGE-001, PAGE-002, PAGE-003",
+      "module_id": "MOD-001",
+      "open_source_modules": [
+        {
+          "module_name": "transformers",
+          "source_registry": "PyPI",
+          "purpose": "交易性质分类与会计科目匹配的AI推理",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "unchecked",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        }
+      ],
+      "priority": "P0",
+      "allowed_paths": [
+        "backend/integrations/bank_stream/",
+        "backend/integrations/transformers_voucher/",
+        "backend/app/modules/TASK-002/",
+        "backend/app/integrations/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-002_5050",
+          "command": "python3 -c \"from transformers import pipeline; print('OK')\"",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-002_5050",
+          "command": "python3 -m pytest backend/integrations/bank_stream/tests/",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-002_5050",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-002_5050",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/integrations/bank_stream/adapter.py",
+        "backend/integrations/bank_stream/models.py",
+        "backend/integrations/bank_stream/tests/",
+        "backend/integrations/transformers_voucher/classifier.py",
+        "backend/integrations/transformers_voucher/matcher.py",
+        "backend/integrations/transformers_voucher/tests/"
+      ],
+      "acceptance_refs": [
+        "FEAT-001-AC-01",
+        "FEAT-001-AC-02",
+        "FEAT-002-AC-01",
+        "FEAT-003-AC-01"
+      ],
+      "dependencies": [
+        "TASK-001"
+      ],
+      "deliverable_type": "backend_connector",
+      "output_contract": {
+        "page_accessible": false,
+        "backend_api_required": true,
+        "router_registry_changes": false,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": false,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/integrations/bank_stream/urls.py"
+        },
+        {
+          "type": "env_requirement",
+          "target": ".env.example",
+          "operation": "create",
+          "source": ""
+        }
+      ],
+      "dependency_additions": [
+        "transformers"
+      ],
+      "validation_required": [
+        "unit_test",
+        "integration_test"
+      ],
+      "task_goal": "集成transformers推理能力并实现银行流水对接适配器。",
+      "task_boundary": "仅提供集成适配器和AI模型调用封装，不涉及前端页面和业务逻辑。",
+      "tasker_instructions": "使用工程基线批准的 transformers 版本和 pip 源，创建 adapter 类供上层调用。银行流水适配器支持手动和定时同步。",
+      "acceptance_focus": "AI模型能正确分类交易性质和推荐科目，银行流水同步成功写入系统。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "module_integration"
+    },
+    {
+      "task_id": "TASK-003",
+      "task_index": 2,
+      "name": "智能记账业务开发",
+      "display_label": "记账-凭证全流程",
+      "description": "开发银行流水同步页面（PAGE-001）、自动记账凭证列表（PAGE-002）、凭证审核（PAGE-003）、凭证历史（PAGE-004）以及对应的后端API，实现凭证自动生成、人工审核、历史追溯功能。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "实现智能记账模块的所有用户页面和后端业务逻辑，包括流水同步、凭证列表、审核、历史追溯。",
+      "page_ref": "PAGE-001, PAGE-002, PAGE-003, PAGE-004",
+      "module_id": "MOD-001",
+      "open_source_modules": [],
+      "priority": "P0",
+      "allowed_paths": [
+        "backend/apps/voucher/",
+        "frontend/src/features/voucher/",
+        "frontend/src/components/TASK-003/",
+        "backend/app/modules/TASK-003/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-003_5050",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-003_5050",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-003_5050",
+          "command": "npm run test --prefix frontend -- --testPathPattern=voucher",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-003_5050",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/voucher/views.py",
+        "backend/apps/voucher/urls.py",
+        "backend/apps/voucher/models.py",
+        "backend/apps/voucher/serializers.py",
+        "backend/apps/voucher/services.py",
+        "backend/apps/voucher/tests/",
+        "frontend/src/features/voucher/BankStreamSync.tsx",
+        "frontend/src/features/voucher/VoucherList.tsx",
+        "frontend/src/features/voucher/VoucherReview.tsx",
+        "frontend/src/features/voucher/VoucherHistory.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-004-AC-01",
+        "FEAT-004-AC-02",
+        "FEAT-005-AC-01",
+        "FEAT-005-AC-02",
+        "FEAT-006-AC-01",
+        "FEAT-006-AC-02",
+        "PAGE-001-MainView",
+        "PAGE-002-MainView",
+        "PAGE-003-MainView",
+        "PAGE-004-MainView"
+      ],
+      "dependencies": [
+        "TASK-002"
+      ],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/voucher/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/voucher/routes.ts"
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test",
+        "ui_smoke"
+      ],
+      "task_goal": "实现凭证的全生命周期管理，包括自动生成、人工审核和历史追溯。",
+      "task_boundary": "不涉及报表和报税模块，不涉及AI模型训练，仅使用TASK-002提供的集成适配器。",
+      "tasker_instructions": "调用TASK-002的集成接口实现凭证自动生成，确保审核痕迹记录完整，所有字段符合验收标准。",
+      "acceptance_focus": "凭证列表可筛选、审核通过后状态变更、历史记录可追溯导出。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    },
+    {
+      "task_id": "TASK-004",
+      "task_index": 3,
+      "name": "报表生成模块集成",
+      "display_label": "报表-集成ReportLab",
+      "description": "集成开源ReportLab库，提供PDF报表生成引擎，创建适配器 backend/integrations/reportlab_adapter/。",
+      "development_mode": "module_integration",
+      "baseline_profile": "module_integration",
+      "task_scope": "集成ReportLab用于报表PDF生成。",
+      "page_ref": "PAGE-005, PAGE-006",
+      "module_id": "MOD-002",
+      "open_source_modules": [
+        {
+          "module_name": "reportlab",
+          "source_registry": "PyPI",
+          "purpose": "PDF报表生成引擎",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "checked_clean",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        }
+      ],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/integrations/reportlab_adapter/",
+        "backend/app/modules/TASK-004/",
+        "backend/app/integrations/TASK-004/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-004_5050",
+          "command": "python3 -c \"from reportlab.lib.pagesizes import A4; print('OK')\"",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-004_5050",
+          "command": "python3 -m pytest backend/integrations/reportlab_adapter/tests/",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-004_5050",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-004_5050",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/integrations/reportlab_adapter/renderer.py",
+        "backend/integrations/reportlab_adapter/tests/"
+      ],
+      "acceptance_refs": [
+        "FEAT-007-AC-01",
+        "FEAT-007-AC-02",
+        "FEAT-009-AC-01"
+      ],
+      "dependencies": [],
+      "deliverable_type": "backend_connector",
+      "output_contract": {
+        "page_accessible": false,
+        "backend_api_required": true,
+        "router_registry_changes": false,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": false,
+        "test_required": true
+      },
+      "integration_hooks": [],
+      "dependency_additions": [
+        "reportlab"
+      ],
+      "validation_required": [
+        "unit_test"
+      ],
+      "task_goal": "封装ReportLab提供PDF报表生成能力。",
+      "task_boundary": "仅提供适配器，不涉及业务报表逻辑。",
+      "tasker_instructions": "创建PDF生成工具类，支持表格、图表和自定义样式。",
+      "acceptance_focus": "PDF生成无报错，布局正确。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "module_integration"
+    },
+    {
+      "task_id": "TASK-005",
+      "task_index": 4,
+      "name": "报表业务开发",
+      "display_label": "报表-标准与自定义",
+      "description": "开发标准报表查看（PAGE-005）和自定义报表设计（PAGE-006）页面及其后端API，支持资产负债表、利润表、现金流量表自动生成，以及用户自定义模板。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "实现报表模块的所有用户页面和后端服务，包括标准报表展示、对比、导出，以及自定义报表设计器。",
+      "page_ref": "PAGE-005, PAGE-006",
+      "module_id": "MOD-002",
+      "open_source_modules": [],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/apps/reports/",
+        "frontend/src/features/reports/",
+        "frontend/src/components/TASK-005/",
+        "backend/app/modules/TASK-005/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-005_5050",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-005_5050",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-005_5050",
+          "command": "npm run test --prefix frontend -- --testPathPattern=reports",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-005_5050",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/reports/views.py",
+        "backend/apps/reports/urls.py",
+        "backend/apps/reports/models.py",
+        "backend/apps/reports/services.py",
+        "backend/apps/reports/tests/",
+        "frontend/src/features/reports/StandardReport.tsx",
+        "frontend/src/features/reports/CustomReportDesigner.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-007-AC-01",
+        "FEAT-007-AC-02",
+        "FEAT-008-AC-01",
+        "FEAT-008-AC-02",
+        "FEAT-009-AC-01",
+        "FEAT-009-AC-02",
+        "PAGE-005-MainView",
+        "PAGE-006-MainView"
+      ],
+      "dependencies": [
+        "TASK-003",
+        "TASK-004"
+      ],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/reports/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/reports/routes.ts"
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test",
+        "ui_smoke"
+      ],
+      "task_goal": "实现标准报表和自定义报表的生成、查看、对比和导出。",
+      "task_boundary": "不涉及PDF生成细节（由TASK-004提供），不涉及税务与风险。",
+      "tasker_instructions": "从TASK-003获取凭证数据，调用TASK-004的适配器生成PDF，注意报表数据聚合逻辑。",
+      "acceptance_focus": "报表数据准确、导出格式正确、自定义模板可保存和应用。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    },
+    {
+      "task_id": "TASK-006",
+      "task_index": 5,
+      "name": "智能报税模块开发",
+      "display_label": "报税-全额定制",
+      "description": "开发智能报税模块（MOD-003）的全部功能，包括税额自动计算、申报表生成、一键申报、申报记录管理。此模块无开源集成，全部定制开发。对应页面PAGE-007和PAGE-008。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "实现报税申报和申报记录两个页面，以及后端税额计算引擎、税务接口适配器。",
+      "page_ref": "PAGE-007, PAGE-008",
+      "module_id": "MOD-003",
+      "open_source_modules": [],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/apps/tax/",
+        "frontend/src/features/tax/",
+        "frontend/src/components/TASK-006/",
+        "backend/app/modules/TASK-006/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-006_5050",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-006_5050",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-006_5050",
+          "command": "npm run test --prefix frontend -- --testPathPattern=tax",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-006_5050",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/tax/views.py",
+        "backend/apps/tax/urls.py",
+        "backend/apps/tax/models.py",
+        "backend/apps/tax/calculator.py",
+        "backend/apps/tax/filing_generator.py",
+        "backend/apps/tax/tax_api_adapter.py",
+        "backend/apps/tax/tests/",
+        "frontend/src/features/tax/TaxFiling.tsx",
+        "frontend/src/features/tax/TaxRecords.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-010-AC-01",
+        "FEAT-010-AC-02",
+        "FEAT-011-AC-01",
+        "FEAT-011-AC-02",
+        "FEAT-012-AC-01",
+        "FEAT-012-AC-02",
+        "FEAT-013-AC-01",
+        "FEAT-013-AC-02",
+        "PAGE-007-MainView",
+        "PAGE-008-MainView"
+      ],
+      "dependencies": [
+        "TASK-005"
+      ],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/tax/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/tax/routes.ts"
+        },
+        {
+          "type": "env_requirement",
+          "target": ".env.example",
+          "operation": "create",
+          "source": ""
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test",
+        "ui_smoke"
+      ],
+      "task_goal": "实现智能报税全流程，从计算到一键申报。",
+      "task_boundary": "不做税务政策库实时更新，模拟税务系统接口。",
+      "tasker_instructions": "依赖TASK-005的报表数据计算税额，申报表需符合标准格式。一键申报对接模拟税务接口，记录回执。",
+      "acceptance_focus": "税额计算正确、申报表可预览、一键申报后记录状态正确。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    },
+    {
+      "task_id": "TASK-007",
+      "task_index": 6,
+      "name": "多源数据模块集成",
+      "display_label": "多源-集成OCR与NLP",
+      "description": "集成PaddleOCR用于发票影像OCR识别，集成Transformers用于发票信息结构化提取。创建适配器 backend/integrations/invoice_ocr/ 和 backend/integrations/invoice_nlp/。",
+      "development_mode": "module_integration",
+      "baseline_profile": "module_integration",
+      "task_scope": "集成PaddleOCR和Transformers用于发票识别。",
+      "page_ref": "PAGE-010",
+      "module_id": "MOD-004",
+      "open_source_modules": [
+        {
+          "module_name": "paddleocr",
+          "source_registry": "PyPI",
+          "purpose": "发票影像OCR识别",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "checked_clean",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        },
+        {
+          "module_name": "transformers",
+          "source_registry": "PyPI",
+          "purpose": "发票信息结构化提取",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "unchecked",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        }
+      ],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/integrations/invoice_ocr/",
+        "backend/integrations/invoice_nlp/",
+        "backend/app/modules/TASK-007/",
+        "backend/app/integrations/TASK-007/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-007_5051",
+          "command": "python3 -c \"from paddleocr import PaddleOCR; print('OK')\"",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-007_5051",
+          "command": "python3 -m pytest backend/integrations/invoice_ocr/tests/",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-007_5051",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-007_5051",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/integrations/invoice_ocr/ocr_service.py",
+        "backend/integrations/invoice_ocr/tests/",
+        "backend/integrations/invoice_nlp/extractor.py",
+        "backend/integrations/invoice_nlp/tests/"
+      ],
+      "acceptance_refs": [
+        "FEAT-014-AC-01",
+        "FEAT-014-AC-02"
+      ],
+      "dependencies": [
+        "TASK-001"
+      ],
+      "deliverable_type": "backend_connector",
+      "output_contract": {
+        "page_accessible": false,
+        "backend_api_required": true,
+        "router_registry_changes": false,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": false,
+        "test_required": true
+      },
+      "integration_hooks": [],
+      "dependency_additions": [
+        "paddleocr"
+      ],
+      "validation_required": [
+        "unit_test",
+        "integration_test"
+      ],
+      "task_goal": "提供发票OCR和NLP识别能力。",
+      "task_boundary": "不涉及业务逻辑和交叉校验。",
+      "tasker_instructions": "使用指定版本的paddleocr和transformers，确保服务稳定。",
+      "acceptance_focus": "识别结果准确，支持批量上传。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "module_integration"
+    },
+    {
+      "task_id": "TASK-008",
+      "task_index": 7,
+      "name": "发票识别与校验业务",
+      "display_label": "发票-识别与校验",
+      "description": "开发发票识别与校验页面（PAGE-010），实现发票上传、AI识别展示、与银行流水交叉校验，并推送至记账模块生成凭证草稿。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "发票识别页面的前后端开发，包括交叉校验逻辑和推送记账。",
+      "page_ref": "PAGE-010",
+      "module_id": "MOD-004",
+      "open_source_modules": [],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/apps/invoice/",
+        "frontend/src/features/invoice/",
+        "frontend/src/components/TASK-008/",
+        "backend/app/modules/TASK-008/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-008_5051",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-008_5051",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-008_5051",
+          "command": "npm run test --prefix frontend -- --testPathPattern=invoice",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-008_5051",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/invoice/views.py",
+        "backend/apps/invoice/urls.py",
+        "backend/apps/invoice/services.py",
+        "backend/apps/invoice/cross_validation.py",
+        "backend/apps/invoice/tests/",
+        "frontend/src/features/invoice/InvoiceRecognition.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-015-AC-01",
+        "FEAT-015-AC-02",
+        "PAGE-010-MainView"
+      ],
+      "dependencies": [
+        "TASK-007",
+        "TASK-003"
+      ],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/invoice/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/invoice/routes.ts"
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test",
+        "ui_smoke"
+      ],
+      "task_goal": "实现发票上传识别和交叉校验。",
+      "task_boundary": "OCR识别依赖TASK-007，推送凭证需要TASK-003的API。",
+      "tasker_instructions": "调用TASK-007的接口识别发票，与TASK-002的银行流水数据进行交叉比对，匹配后调用TASK-003的凭证生成接口。",
+      "acceptance_focus": "识别准确，交叉校验状态正确，推送后凭证显示在列表。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    },
+    {
+      "task_id": "TASK-009",
+      "task_index": 8,
+      "name": "银行余额日报模块集成",
+      "display_label": "日报-集成Celery",
+      "description": "集成Celery用于定时任务调度，集成ReportLab用于日报PDF生成。创建适配器 backend/integrations/daily_report_scheduler/ 和 backend/integrations/daily_report_pdf/。",
+      "development_mode": "module_integration",
+      "baseline_profile": "module_integration",
+      "task_scope": "集成Celery和ReportLab用于日报定时生成和PDF输出。",
+      "page_ref": "PAGE-009",
+      "module_id": "MOD-005",
+      "open_source_modules": [
+        {
+          "module_name": "celery",
+          "source_registry": "PyPI",
+          "purpose": "定时任务调度",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "checked_clean",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        },
+        {
+          "module_name": "reportlab",
+          "source_registry": "PyPI",
+          "purpose": "日报PDF生成",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "unchecked",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        }
+      ],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/integrations/daily_report_scheduler/",
+        "backend/integrations/daily_report_pdf/",
+        "backend/app/modules/TASK-009/",
+        "backend/app/integrations/TASK-009/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-009_5051",
+          "command": "celery --version",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-009_5051",
+          "command": "python3 -m pytest backend/integrations/daily_report_scheduler/tests/",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-009_5051",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-009_5051",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/integrations/daily_report_scheduler/tasks.py",
+        "backend/integrations/daily_report_scheduler/tests/",
+        "backend/integrations/daily_report_pdf/generator.py",
+        "backend/integrations/daily_report_pdf/tests/"
+      ],
+      "acceptance_refs": [
+        "FEAT-016-AC-01",
+        "FEAT-017-AC-01"
+      ],
+      "dependencies": [
+        "TASK-001"
+      ],
+      "deliverable_type": "backend_connector",
+      "output_contract": {
+        "page_accessible": false,
+        "backend_api_required": true,
+        "router_registry_changes": false,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": false,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "env_requirement",
+          "target": ".env.example",
+          "operation": "create",
+          "source": ""
+        }
+      ],
+      "dependency_additions": [
+        "celery",
+        "redis"
+      ],
+      "validation_required": [
+        "unit_test",
+        "integration_test"
+      ],
+      "task_goal": "提供定时任务执行和日报PDF生成能力。",
+      "task_boundary": "不涉及业务报表逻辑。",
+      "tasker_instructions": "配置Celery定时任务每日获取银行余额，调用ReportLab生成PDF。",
+      "acceptance_focus": "定时任务正确执行，PDF生成无误。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "module_integration"
+    },
+    {
+      "task_id": "TASK-010",
+      "task_index": 9,
+      "name": "银行余额日报业务",
+      "display_label": "日报-余额与明细",
+      "description": "开发银行余额日报页面（PAGE-009），展示各银行账户当日余额、收支明细、变动趋势，支持导出和历史查看。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "日报页面的前后端开发。",
+      "page_ref": "PAGE-009",
+      "module_id": "MOD-005",
+      "open_source_modules": [],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/apps/daily_report/",
+        "frontend/src/features/daily_report/",
+        "frontend/src/components/TASK-010/",
+        "backend/app/modules/TASK-010/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-010_5051",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-010_5051",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-010_5051",
+          "command": "npm run test --prefix frontend -- --testPathPattern=daily",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-010_5051",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/daily_report/views.py",
+        "backend/apps/daily_report/urls.py",
+        "backend/apps/daily_report/services.py",
+        "backend/apps/daily_report/tests/",
+        "frontend/src/features/daily_report/DailyDashboard.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-016-AC-02",
+        "FEAT-017-AC-02",
+        "PAGE-009-MainView"
+      ],
+      "dependencies": [
+        "TASK-009"
+      ],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/daily_report/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/daily_report/routes.ts"
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test",
+        "ui_smoke"
+      ],
+      "task_goal": "展示银行余额日报，支持导出。",
+      "task_boundary": "定时任务由TASK-009处理。",
+      "tasker_instructions": "调用TASK-009的接口获取日报数据，前端展示卡片和列表。",
+      "acceptance_focus": "数据正确，导出文件完整。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    },
+    {
+      "task_id": "TASK-011",
+      "task_index": 10,
+      "name": "开票与单据模块集成",
+      "display_label": "开票-集成OCR与NLP",
+      "description": "集成PaddleOCR和Transformers用于单据影像识别，创建适配器 backend/integrations/document_ocr/ 和 backend/integrations/document_nlp/。",
+      "development_mode": "module_integration",
+      "baseline_profile": "module_integration",
+      "task_scope": "集成OCR和NLP用于出入库单、合同等单据识别。",
+      "page_ref": "PAGE-011, PAGE-012",
+      "module_id": "MOD-006",
+      "open_source_modules": [
+        {
+          "module_name": "paddleocr",
+          "source_registry": "PyPI",
+          "purpose": "单据影像OCR识别",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "checked_clean",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        },
+        {
+          "module_name": "transformers",
+          "source_registry": "PyPI",
+          "purpose": "单据信息结构化提取",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "unchecked",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        }
+      ],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/integrations/document_ocr/",
+        "backend/integrations/document_nlp/",
+        "backend/app/modules/TASK-011/",
+        "backend/app/integrations/TASK-011/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-011_5052",
+          "command": "python3 -m pytest backend/integrations/document_ocr/tests/",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-011_5052",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-011_5052",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/integrations/document_ocr/ocr_service.py",
+        "backend/integrations/document_ocr/tests/",
+        "backend/integrations/document_nlp/extractor.py",
+        "backend/integrations/document_nlp/tests/"
+      ],
+      "acceptance_refs": [
+        "FEAT-018-AC-01",
+        "FEAT-020-AC-01"
+      ],
+      "dependencies": [
+        "TASK-001"
+      ],
+      "deliverable_type": "backend_connector",
+      "output_contract": {
+        "page_accessible": false,
+        "backend_api_required": true,
+        "router_registry_changes": false,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": false,
+        "test_required": true
+      },
+      "integration_hooks": [],
+      "dependency_additions": [],
+      "validation_required": [
+        "unit_test",
+        "integration_test"
+      ],
+      "task_goal": "提供单据影像识别能力。",
+      "task_boundary": "开票与单据模块集成 — 由 normalize 自动补全",
+      "tasker_instructions": "复用paddleocr和transformers，提供统一接口供业务层调用。",
+      "acceptance_focus": "识别准确，支持多种单据类型。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "module_integration"
+    },
+    {
+      "task_id": "TASK-012",
+      "task_index": 11,
+      "name": "开票与单据管理业务",
+      "display_label": "开票-管理与生成",
+      "description": "开发开票管理页面（PAGE-011）和单据智能生成页面（PAGE-012）及其后端API，实现开票需求识别、自动开票、单据识别生成标准单据。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "开票管理和单据生成两个页面的全栈开发。",
+      "page_ref": "PAGE-011, PAGE-012",
+      "module_id": "MOD-006",
+      "open_source_modules": [],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/apps/invoice_issuance/",
+        "frontend/src/features/invoice_issuance/",
+        "frontend/src/components/TASK-012/",
+        "backend/app/modules/TASK-012/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-012_5053",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-012_5053",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-012_5053",
+          "command": "npm run test --prefix frontend -- --testPathPattern=issuance",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-012_5053",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/invoice_issuance/views.py",
+        "backend/apps/invoice_issuance/urls.py",
+        "backend/apps/invoice_issuance/services.py",
+        "backend/apps/invoice_issuance/tests/",
+        "frontend/src/features/invoice_issuance/InvoiceIssuance.tsx",
+        "frontend/src/features/invoice_issuance/DocumentGeneration.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-018-AC-02",
+        "FEAT-019-AC-01",
+        "FEAT-019-AC-02",
+        "FEAT-020-AC-02",
+        "FEAT-021-AC-01",
+        "FEAT-021-AC-02",
+        "PAGE-011-MainView",
+        "PAGE-012-MainView"
+      ],
+      "dependencies": [
+        "TASK-011"
+      ],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/invoice_issuance/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/invoice_issuance/routes.ts"
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test",
+        "ui_smoke"
+      ],
+      "task_goal": "实现开票管理与单据智能生成。",
+      "task_boundary": "OCR识别依赖TASK-011，开票接口模拟。",
+      "tasker_instructions": "调用TASK-011的识别接口，实现批量开票和单据生成同步。",
+      "acceptance_focus": "开票需求显示正确、批量开票成功、单据生成同步。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    },
+    {
+      "task_id": "TASK-013",
+      "task_index": 12,
+      "name": "风险预警模块集成",
+      "display_label": "风险-集成异常检测",
+      "description": "集成PyOD和scikit-learn用于异常检测算法，创建适配器 backend/integrations/risk_anomaly/。",
+      "development_mode": "module_integration",
+      "baseline_profile": "module_integration",
+      "task_scope": "集成异常检测库。",
+      "page_ref": "PAGE-013",
+      "module_id": "MOD-007",
+      "open_source_modules": [
+        {
+          "module_name": "pyod",
+          "source_registry": "PyPI",
+          "purpose": "异常检测算法库",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "unchecked",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        },
+        {
+          "module_name": "scikit-learn",
+          "source_registry": "PyPI",
+          "purpose": "机器学习基础库",
+          "maintenance_assessment": "unknown",
+          "cve_status": {
+            "result": "unchecked",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        }
+      ],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/integrations/risk_anomaly/",
+        "backend/app/modules/TASK-013/",
+        "backend/app/integrations/TASK-013/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-013_5053",
+          "command": "python3 -c \"from pyod.models.iforest import IForest; print('OK')\"",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-013_5053",
+          "command": "python3 -m pytest backend/integrations/risk_anomaly/tests/",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-013_5053",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-013_5053",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/integrations/risk_anomaly/detector.py",
+        "backend/integrations/risk_anomaly/tests/"
+      ],
+      "acceptance_refs": [
+        "FEAT-022-AC-01"
+      ],
+      "dependencies": [],
+      "deliverable_type": "backend_connector",
+      "output_contract": {
+        "page_accessible": false,
+        "backend_api_required": true,
+        "router_registry_changes": false,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": false,
+        "test_required": true
+      },
+      "integration_hooks": [],
+      "dependency_additions": [
+        "pyod",
+        "scikit-learn"
+      ],
+      "validation_required": [
+        "unit_test",
+        "integration_test"
+      ],
+      "task_goal": "提供异常检测算法封装。",
+      "task_boundary": "不涉及阈值管理和业务规则。",
+      "tasker_instructions": "封装PyOD和scikit-learn的异常检测模型，提供统一评分接口。",
+      "acceptance_focus": "算法能正确输出异常分数。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "module_integration"
+    },
+    {
+      "task_id": "TASK-014",
+      "task_index": 13,
+      "name": "风险预警业务",
+      "display_label": "风险-概览与处置",
+      "description": "开发风险预警概览页面（PAGE-013）及其后端API，展示报表异常、税务合规、资金风险预警，支持标记已处理。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "风险预警页面的全栈开发。",
+      "page_ref": "PAGE-013",
+      "module_id": "MOD-007",
+      "open_source_modules": [],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/apps/risk/",
+        "frontend/src/features/risk/",
+        "frontend/src/components/TASK-014/",
+        "backend/app/modules/TASK-014/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-014_5053",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-014_5053",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-014_5053",
+          "command": "npm run test --prefix frontend -- --testPathPattern=risk",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-014_5053",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/risk/views.py",
+        "backend/apps/risk/urls.py",
+        "backend/apps/risk/services.py",
+        "backend/apps/risk/tests/",
+        "frontend/src/features/risk/RiskOverview.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-022-AC-02",
+        "FEAT-023-AC-01",
+        "FEAT-023-AC-02",
+        "PAGE-013-MainView"
+      ],
+      "dependencies": [
+        "TASK-003",
+        "TASK-005",
+        "TASK-010",
+        "TASK-013"
+      ],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/risk/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/risk/routes.ts"
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test",
+        "ui_smoke"
+      ],
+      "task_goal": "实现风险预警的展示与处置。",
+      "task_boundary": "异常检测由TASK-013提供，预警规则预先配置。",
+      "tasker_instructions": "从TASK-003、TASK-005、TASK-010获取数据，调用TASK-013检测异常，展示并允许处置。",
+      "acceptance_focus": "预警列表正确，标记已处理成功。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    },
+    {
+      "task_id": "TASK-015",
+      "task_index": 14,
+      "name": "智能咨询模块集成",
+      "display_label": "咨询-集成对话模型",
+      "description": "集成HuggingFace Transformers用于部署对话模型，创建适配器 backend/integrations/ai_consult/。",
+      "development_mode": "module_integration",
+      "baseline_profile": "module_integration",
+      "task_scope": "集成Transformers对话模型。",
+      "page_ref": "PAGE-014",
+      "module_id": "MOD-008",
+      "open_source_modules": [
+        {
+          "module_name": "transformers",
+          "source_registry": "PyPI",
+          "purpose": "对话模型推理",
+          "maintenance_assessment": "active",
+          "cve_status": {
+            "result": "unchecked",
+            "source": "resolveModuleMetadata",
+            "checked_at": "2026-07-30T10:38:44.360+03:00"
+          }
+        }
+      ],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/integrations/ai_consult/",
+        "backend/app/modules/TASK-015/",
+        "backend/app/integrations/TASK-015/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-015_5053",
+          "command": "python3 -c \"from transformers import AutoModelForCausalLM; print('OK')\"",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-015_5053",
+          "command": "python3 -m pytest backend/integrations/ai_consult/tests/",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-015_5053",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-015_5053",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/integrations/ai_consult/chat_service.py",
+        "backend/integrations/ai_consult/knowledge_base.py",
+        "backend/integrations/ai_consult/tests/"
+      ],
+      "acceptance_refs": [
+        "FEAT-024-AC-01",
+        "FEAT-024-AC-02"
+      ],
+      "dependencies": [],
+      "deliverable_type": "backend_connector",
+      "output_contract": {
+        "page_accessible": false,
+        "backend_api_required": true,
+        "router_registry_changes": false,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": false,
+        "test_required": true
+      },
+      "integration_hooks": [],
+      "dependency_additions": [],
+      "validation_required": [
+        "unit_test",
+        "integration_test"
+      ],
+      "task_goal": "提供AI对话推理能力。",
+      "task_boundary": "不涉及前端和业务上下文注入。",
+      "tasker_instructions": "部署轻量对话模型，支持财务知识问答。",
+      "acceptance_focus": "问答返回正确且附带引用。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "module_integration"
+    },
+    {
+      "task_id": "TASK-016",
+      "task_index": 15,
+      "name": "智能咨询业务",
+      "display_label": "咨询-页面与反馈",
+      "description": "开发AI智能咨询页面（PAGE-014）及其后端API，集成对话模型，支持提问、答案展示、反馈收集。",
+      "development_mode": "custom_development",
+      "baseline_profile": "full_stack_feature",
+      "task_scope": "智能咨询页面的前后端开发。",
+      "page_ref": "PAGE-014",
+      "module_id": "MOD-008",
+      "open_source_modules": [],
+      "priority": "P1",
+      "allowed_paths": [
+        "backend/apps/consult/",
+        "frontend/src/features/consult/",
+        "frontend/src/components/TASK-016/",
+        "backend/app/modules/TASK-016/"
+      ],
+      "forbidden_paths": [
+        "backend/config/",
+        "frontend/public/",
+        "backend/requirements.txt",
+        "frontend/package.json"
+      ],
+      "validation_commands": [
+        {
+          "validation_id": "vc_TASK-016_5053",
+          "command": "python3 manage.py check --deploy",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        },
+        {
+          "validation_id": "vc_TASK-016_5053",
+          "command": "npm run lint --prefix frontend",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-016_5053",
+          "command": "npm run test --prefix frontend -- --testPathPattern=consult",
+          "required": true,
+          "applies_to": "frontend",
+          "cwd": "frontend"
+        },
+        {
+          "validation_id": "vc_TASK-016_5053",
+          "command": "python3 -m compileall .",
+          "required": true,
+          "applies_to": "backend",
+          "cwd": "backend"
+        }
+      ],
+      "estimated_outputs": [
+        "backend/apps/consult/views.py",
+        "backend/apps/consult/urls.py",
+        "backend/apps/consult/services.py",
+        "backend/apps/consult/tests/",
+        "frontend/src/features/consult/AiConsult.tsx"
+      ],
+      "acceptance_refs": [
+        "FEAT-024-AC-01",
+        "FEAT-025-AC-01",
+        "FEAT-025-AC-02",
+        "PAGE-014-MainView"
+      ],
+      "dependencies": [
+        "TASK-015"
+      ],
+      "deliverable_type": "runnable_slice",
+      "output_contract": {
+        "page_accessible": true,
+        "backend_api_required": true,
+        "router_registry_changes": true,
+        "build_config_changes": false,
+        "package_changes": false,
+        "backend_routes_changes": true,
+        "test_required": true
+      },
+      "integration_hooks": [
+        {
+          "type": "route_registration",
+          "target": "backend/config/urls.py",
+          "operation": "register",
+          "source": "backend/apps/consult/urls.py"
+        },
+        {
+          "type": "route_registration",
+          "target": "frontend/src/routes.tsx",
+          "operation": "append",
+          "source": "frontend/src/features/consult/routes.ts"
+        }
+      ],
+      "dependency_additions": [],
+      "validation_required": [
+        "lint",
+        "unit_test",
+        "integration_test",
+        "ui_smoke"
+      ],
+      "task_goal": "实现AI智能咨询界面。",
+      "task_boundary": "对话模型由TASK-015提供，个性化解答需结合企业数据。",
+      "tasker_instructions": "调用TASK-015的接口，展示问答历史和反馈按钮。",
+      "acceptance_focus": "对话流畅，答案有引用，反馈记录成功。",
+      "idea_id": "IDEA-20260730073439-OMBY9T",
+      "owner": "builder",
+      "estimated_complexity": "medium",
+      "task_type": "custom_development"
+    }
+  ],
+  "execution_batches": [
+    {
+      "batch_id": "BATCH-1",
+      "batch_order": 1,
+      "task_ids": [
+        "TASK-001"
+      ],
+      "can_run_in_parallel": false,
+      "batch_goal": "先完成系统管理基础配置，提供数据源管理和操作日志记录接口。",
+      "entry_condition": "无依赖任务完成",
+      "exit_condition": "系统管理页面可访问，数据源管理API可用"
+    },
+    {
+      "batch_id": "BATCH-2",
+      "batch_order": 2,
+      "task_ids": [
+        "TASK-002",
+        "TASK-004",
+        "TASK-007",
+        "TASK-009",
+        "TASK-011",
+        "TASK-013",
+        "TASK-015"
+      ],
+      "can_run_in_parallel": true,
+      "batch_goal": "并行完成各模块的开源集成工作，确保底层AI和工具库可用。",
+      "entry_condition": "TASK-001 完成",
+      "exit_condition": "所有集成适配器测试通过"
+    },
+    {
+      "batch_id": "BATCH-3",
+      "batch_order": 3,
+      "task_ids": [
+        "TASK-003",
+        "TASK-005",
+        "TASK-006",
+        "TASK-008",
+        "TASK-010",
+        "TASK-012",
+        "TASK-016"
+      ],
+      "can_run_in_parallel": false,
+      "batch_goal": "开发各模块的业务页面和后端API，依赖各自的集成任务。注意TASK-003（记账业务）是众多依赖的基点，需优先。",
+      "entry_condition": "BATCH-2 完成",
+      "exit_condition": "所有业务页面可访问，核心功能验收通过"
+    },
+    {
+      "batch_id": "BATCH-4",
+      "batch_order": 4,
+      "task_ids": [
+        "TASK-014"
+      ],
+      "can_run_in_parallel": false,
+      "batch_goal": "风险预警业务需要多个上游业务数据，因此放在最后。",
+      "entry_condition": "TASK-003, TASK-005, TASK-010, TASK-013 完成",
+      "exit_condition": "风险预警页面显示，报警正确"
+    }
+  ],
+  "quality_gates": [
+    {
+      "gate_id": "QG-001",
+      "name": "task_manifest 结构检查",
+      "description": "检查manifest JSON结构、字段完整性和枚举值正确性。",
+      "applies_to": "manifest",
+      "gate_name": "gate_1",
+      "check": "automated",
+      "severity": "minor"
+    },
+    {
+      "gate_id": "QG-002",
+      "name": "依赖图无环且深度≤5",
+      "description": "验证 dependency_graph.has_cycle == false 且 max_dependency_depth ≤ 5。",
+      "applies_to": "dependency_graph",
+      "gate_name": "gate_2",
+      "check": "automated",
+      "severity": "minor"
+    },
+    {
+      "gate_id": "QG-003",
+      "name": "Engineering Baseline runtime gate",
+      "description": "确认工程基线中的运行时、依赖、数据库栈与任务中声明的匹配。",
+      "applies_to": "tasks",
+      "gate_name": "gate_3",
+      "check": "automated",
+      "severity": "minor"
+    },
+    {
+      "gate_id": "QG-004",
+      "name": "allowed_paths 与 application_structure 对齐",
+      "description": "每个任务的 allowed_paths 必须在 tasker_writable_roots 范围内，不包含 integrator_owned_files。",
+      "applies_to": "tasks",
+      "gate_name": "gate_4",
+      "check": "automated",
+      "severity": "minor"
+    },
+    {
+      "gate_id": "QG-005",
+      "name": "integration_hooks / dependency_additions 装配声明检查",
+      "description": "确保所有需要修改基础设施的任务正确声明了 integration_hooks 和 dependency_additions。",
+      "applies_to": "tasks",
+      "gate_name": "gate_5",
+      "check": "automated",
+      "severity": "minor"
+    },
+    {
+      "gate_id": "QG-006",
+      "name": "验收项覆盖检查",
+      "description": "每个 acceptance_refs 引用的 ID 必须在 page_function_acceptance.json 中存在，且所有 FEAT-xxx 都被至少一个任务覆盖。",
+      "applies_to": "tasks",
+      "gate_name": "gate_6",
+      "check": "automated",
+      "severity": "minor"
+    },
+    {
+      "gate_id": "QG-007",
+      "name": "并行安全规则检查",
+      "description": "同批次任务不修改同一页面、路由、模块或共享配置。",
+      "applies_to": "execution_batches",
+      "gate_name": "gate_7",
+      "check": "automated",
+      "severity": "minor"
+    }
+  ],
+  "risk_register": [
+    {
+      "risk_id": "RISK-001",
+      "risk_type": "baseline_unready",
+      "description": "TASK-014（风险预警）依赖 TASK-003、TASK-005、TASK-010 和 TASK-013，若上游延迟将导致风险预警推迟。",
+      "mitigation": "确保上游任务按期完成，或让风险预警先行实现基于模拟数据的前端占位。",
+      "owner": "Tasker",
+      "affected_tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003",
+        "TASK-004",
+        "TASK-005",
+        "TASK-006",
+        "TASK-007",
+        "TASK-008",
+        "TASK-009",
+        "TASK-010",
+        "TASK-011",
+        "TASK-012",
+        "TASK-013",
+        "TASK-014",
+        "TASK-015",
+        "TASK-016"
+      ],
+      "required_resolution_before": "pre_development_gate"
+    },
+    {
+      "risk_id": "RISK-002",
+      "risk_type": "scope",
+      "description": "TASK-007 和 TASK-011 依赖 PaddleOCR 和 Transformers，若模型加载或硬件资源不足可能影响性能。",
+      "mitigation": "预先准备 GPU 资源，使用轻量化模型。",
+      "owner": "Infrastructure",
+      "affected_tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003",
+        "TASK-004",
+        "TASK-005",
+        "TASK-006",
+        "TASK-007",
+        "TASK-008",
+        "TASK-009",
+        "TASK-010",
+        "TASK-011",
+        "TASK-012",
+        "TASK-013",
+        "TASK-014",
+        "TASK-015",
+        "TASK-016"
+      ],
+      "required_resolution_before": "pre_development_gate"
+    },
+    {
+      "risk_id": "RISK-003",
+      "risk_type": "baseline_unready",
+      "description": "TASK-001（系统管理）是多个任务的依赖，若延迟将阻塞后续批次。",
+      "mitigation": "优先投入资源，采用最小可工作版本快速交付。",
+      "owner": "Tasker",
+      "affected_tasks": [
+        "TASK-001",
+        "TASK-002",
+        "TASK-003",
+        "TASK-004",
+        "TASK-005",
+        "TASK-006",
+        "TASK-007",
+        "TASK-008",
+        "TASK-009",
+        "TASK-010",
+        "TASK-011",
+        "TASK-012",
+        "TASK-013",
+        "TASK-014",
+        "TASK-015",
+        "TASK-016"
+      ],
+      "required_resolution_before": "pre_development_gate"
+    }
+  ]
+}

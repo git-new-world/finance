@@ -1,0 +1,12 @@
+{
+  "framework": "react_vite",
+  "pages": [],
+  "generated_at": "2026-07-30T10:53:20.874077Z",
+  "assembly_authorities": {
+    "primary": "engineering_baseline.json",
+    "secondary": "task_manifest.json",
+    "order": "dependency_graph.json",
+    "background": "development_route.json"
+  },
+  "entry_rewrite_policy": "missing_or_integrator_generated_only"
+}

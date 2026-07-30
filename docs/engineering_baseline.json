@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "idea_id": "IDEA-20260730073439-OMBY9T",
+    "project_id": "finance",
+    "task_id": "IDEA-20260730073439-OMBY9T",
+    "generated_at": "2026-07-30T10:38:51.623+03:00",
+    "source_files_used": [
+      {
+        "file_type": "page_function_design",
+        "uri": "page_function_design.md"
+      },
+      {
+        "file_type": "development_route",
+        "uri": "development_route.json"
+      }
+    ]
+  },
+  "baseline_generation_status": "ready_with_warnings",
+  "input_readiness": {
+    "page_function_design_present": true,
+    "development_route_present": true,
+    "repository_context_present": false,
+    "blocking_issues": []
+  },
+  "repository_baseline": {
+    "repository_url": "https://github.com/git-new-world/finance",
+    "repository_name": "finance",
+    "target_branch": "develop",
+    "baseline_commit_sha": "",
+    "working_branch_policy": "feature branches from develop, merge via pull request",
+    "primary_application_paths": [],
+    "confidence": "low"
+  },
+  "runtime_baseline": {
+    "primary_language": "python",
+    "frontend_runtime": {
+      "framework": "unknown",
+      "bundler": "unknown",
+      "deploy_subpath": "/",
+      "router_lib": "unknown",
+      "page_ext": ".tsx",
+      "export_default": true
+    },
+    "backend_runtime": {
+      "framework": "unknown",
+      "entry_point": "unknown"
+    },
+    "package_managers": [
+      "pip",
+      "npm"
+    ],
+    "required_dependencies": [
+      "transformers",
+      "paddleocr",
+      "reportlab",
+      "celery",
+      "pyod",
+      "scikit-learn"
+    ],
+    "database_stack": [
+      "postgresql",
+      "redis"
+    ],
+    "deployment_target": "docker_compose",
+    "environment_variables_required": [
+      "DATABASE_URL",
+      "SECRET_KEY",
+      "REDIS_URL",
+      "API_KEY"
+    ],
+    "secret_handling_policy": "management_console_encrypted_storage",
+    "confidence": "low",
+    "service_requirements": [
+      {
+        "name": "redis",
+        "image": "redis",
+        "tag": "7-alpine",
+        "ports": [
+          6379
+        ],
+        "healthcheck": "redis-cli ping"
+      },
+      {
+        "name": "postgres",
+        "image": "postgres",
+        "tag": "16-alpine",
+        "ports": [
+          5432
+        ],
+        "env": [
+          "POSTGRES_DB",
+          "POSTGRES_USER",
+          "POSTGRES_PASSWORD"
+        ],
+        "healthcheck": "pg_isready"
+      }
+    ]
+  },
+  "dependency_baseline": {
+    "dependency_files": [
+      "backend/requirements.txt",
+      "frontend/package.json"
+    ],
+    "lock_files": [
+      "frontend/package-lock.json"
+    ],
+    "known_existing_dependencies": [],
+    "route_approved_dependencies_to_add": [
+      "transformers@4.40.0",
+      "paddleocr@2.7.0",
+      "reportlab@4.2.0",
+      "celery@5.3.0",
+      "pyod@1.1.0",
+      "scikit-learn@1.4.0",
+      "redis"
+    ],
+    "version_lock_policy": "pin exact versions for approved modules",
+    "confidence": "low"
+  },
+  "allowed_paths": [
+    {
+      "path": "backend/app/",
+      "reason": "Custom backend business modules (integration boundary code, rule engine, custom logic)",
+      "applies_to": "custom_development"
+    },
+    {
+      "path": "frontend/src/pages/",
+      "reason": "Frontend pages (page components, routing entries)",
+      "applies_to": "module_integration"
+    },
+    {
+      "path": "backend/integrations/",
+      "reason": "Open-source module integration adapters (transformers, paddleocr, reportlab, celery, pyod, scikit-learn)",
+      "applies_to": "module_integration"
+    }
+  ],
+  "forbidden_paths": [
+    {
+      "path": "backend/config/",
+      "reason": "Infrastructure configuration files owned by Integrator; Tasker must not modify without integration_hook"
+    },
+    {
+      "path": "frontend/public/",
+      "reason": "Static assets; Tasker should not create pages or scripts here"
+    },
+    {
+      "path": "backend/requirements.txt",
+      "reason": "Dependency file; Tasker should declare additions in integration_hooks, not edit directly"
+    },
+    {
+      "path": "frontend/package.json",
+      "reason": "Dependency file; Tasker should declare additions in integration_hooks, not edit directly"
+    }
+  ],
+  "validation_baseline": {
+    "known_validation_commands": [],
+    "required_validation_types": [
+      "unit_test",
+      "lint",
+      "deploy_check"
+    ],
+    "validation_gaps": [
+      "No known validation commands – repository not scanned",
+      "Frontend build/lint commands unknown",
+      "Backend pytest/flake8 commands unknown"
+    ]
+  },
+  "tasker_execution_boundary": {
+    "allowed_task_types": [
+      "module_integration",
+      "custom_development"
+    ],
+    "tasker_must_do": [
+      "Prioritize module_integration over custom_development for approved open-source modules/APIs",
+      "Use integration_hooks to declare new routes, dependencies, environment variables, migrations",
+      "Write business code only in tasker_writable_roots as defined in application_structure",
+      "Prefer module_integration whenever an approved open-source module, SDK, API, or reusable component exists.",
+      "Use custom_development only when development_route explicitly marks the feature as not reusable, or no approved module/API/component exists."
+    ],
+    "tasker_must_not_do": [
+      "Modify integrator_owned_files (entry files, config, router, package files, deployment files) directly",
+      "Implement functionality already covered by approved modules/APIs (e.g., do not rewrite OCR when paddleocr is approved)",
+      "Create new frontend/backend framework scaffold (integrator handles that)"
+    ],
+    "context_rule": "route-approved open-source/module integration has priority over custom_development; custom_development allowed only when no approved module/API/SDK/component can be reused Route-approved open-source/module integration has priority over custom_development.",
+    "development_mode_priority": [
+      "module_integration",
+      "custom_development"
+    ],
+    "full_development_policy": "Custom_development is only permitted when no approved open-source module, professional API, SDK, or reusable component can satisfy the requirement. All routes must first attempt to use the approved selections listed in development_route.json."
+  },
+  "application_structure": {
+    "application_type": "web_fullstack",
+    "structure_source": "development_route",
+    "structure_status": "inferred_standard_scaffold",
+    "runtime_family": "python",
+    "roots": {
+      "frontend_root": "frontend",
+      "backend_root": "backend",
+      "shared_root": "shared"
+    },
+    "tasker_writable_roots": [
+      "backend/apps",
+      "backend/integrations",
+      "frontend/src/pages",
+      "frontend/src/components",
+      "frontend/src/features"
+    ],
+    "tasker_readonly_files": [
+      "frontend/tsconfig.json",
+      "backend/package.json"
+    ],
+    "integrator_owned_files": [
+      "backend/main.py",
+      "backend/Dockerfile",
+      "backend/.env.example",
+      "frontend/package.json",
+      "frontend/vite.config.ts",
+      "frontend/index.html",
+      "frontend/Dockerfile",
+      ".gitignore",
+      "backend/manage.py",
+      "backend/requirements.txt",
+      "backend/config/settings.py",
+      "backend/config/urls.py",
+      "backend/config/wsgi.py",
+      "backend/config/asgi.py",
+      "docker/docker-compose.yml",
+      "docker/Dockerfile",
+      ".env.example",
+      "infrastructure/ci.yml",
+      "infrastructure/deploy.yml",
+      "backend/api.py",
+      "frontend/vite.config.js"
+    ],
+    "path_derivation_rules": [
+      {
+        "baseline_profile": "backend_api",
+        "work_unit_type": "backend_api",
+        "target_root": "backend/apps",
+        "path_template": "backend/app/{module_name}/"
+      },
+      {
+        "baseline_profile": "frontend_page",
+        "work_unit_type": "module_integration",
+        "target_root": "frontend/src/pages",
+        "path_template": "frontend/src/pages/{page_name}/"
+      },
+      {
+        "baseline_profile": "module_integration",
+        "work_unit_type": "module_integration",
+        "target_root": "backend/integrations",
+        "path_template": "backend/integrations/{module_slug}/"
+      },
+      {
+        "baseline_profile": "full_stack_feature",
+        "work_unit_type": "full_stack_feature",
+        "target_root": "frontend/src/features",
+        "path_template": "frontend/src/features/{feature_slug}/"
+      }
+    ],
+    "confidence": "low",
+    "frontend_root": "frontend",
+    "backend_root": "backend",
+    "shared_root": "shared",
+    "framework": "unknown",
+    "frontend_pages_root": "unknown",
+    "frontend_components_root": "unknown",
+    "backend_modules_root": "unknown",
+    "backend_routes_root": "unknown",
+    "database_migrations_root": "unknown",
+    "database_seed_root": "unknown",
+    "router_files": [
+      "backend/config/urls.py"
+    ],
+    "menu_registry_files": [],
+    "package_files": [
+      "frontend/package.json",
+      "backend/requirements.txt"
+    ],
+    "config_files": [
+      "backend/.env.example",
+      "frontend/vite.config.ts",
+      "backend/config/settings.py",
+      "backend/config/urls.py",
+      "backend/config/wsgi.py",
+      "backend/config/asgi.py",
+      "docker/docker-compose.yml",
+      ".env.example",
+      "infrastructure/ci.yml",
+      "infrastructure/deploy.yml"
+    ],
+    "entry_files": [
+      "backend/main.py",
+      "frontend/index.html",
+      "backend/manage.py",
+      "backend/config/wsgi.py",
+      "backend/config/asgi.py"
+    ]
+  },
+  "do_not_do": [
+    "Do not reimplement functionality already covered by approved open-source modules (e.g., OCR by paddleocr, anomaly detection by pyod/scikit-learn, scheduling by celery, AI models by transformers).",
+    "Do not create new infrastructure files (Dockerfile, docker-compose, entry points, router config) – these belong to Integrator.",
+    "Do not hardcode API keys, secrets, or tokens in code; use environment variables referenced in management console.",
+    "Do not modify the repository baseline working branch (target_branch) or commit SHA without explicit Integrator instruction."
+  ],
+  "_integrator_authority": "engineering_baseline_first",
+  "_integrator_source": "/tmp/baseline_IDEA-2026073_jt7zcxnd/engineering_baseline_0.json"
+}

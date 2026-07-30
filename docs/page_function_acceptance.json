@@ -1,0 +1,2011 @@
+{
+  "metadata": {
+    "idea_id": "IDEA-20260730073439-OMBY9T",
+    "project_id": "finance",
+    "task_id": "IDEA-20260730073439-OMBY9T",
+    "generated_at": "2026-07-30T10:40:09.200+03:00",
+    "source_files_used": [
+      {
+        "file_type": "page_function_design",
+        "uri": "page_function_design.md",
+        "required": true
+      },
+      {
+        "file_type": "development_route",
+        "uri": "development_route.json",
+        "required": true
+      },
+      {
+        "file_type": "engineering_baseline",
+        "uri": "engineering_baseline.json",
+        "required": true
+      }
+    ]
+  },
+  "acceptance_generation_status": "ready",
+  "input_readiness": {
+    "page_function_design_present": true,
+    "development_route_present": true,
+    "engineering_baseline_present": true,
+    "blocking_issues": []
+  },
+  "acceptance_scope": {
+    "source_modules": [
+      {
+        "module_id": "MOD-001",
+        "module_name": "智能记账模块",
+        "module_type": "core_ai"
+      },
+      {
+        "module_id": "MOD-002",
+        "module_name": "报表生成模块",
+        "module_type": "reporting"
+      },
+      {
+        "module_id": "MOD-003",
+        "module_name": "智能报税模块",
+        "module_type": "tax"
+      },
+      {
+        "module_id": "MOD-004",
+        "module_name": "多源数据模块",
+        "module_type": "integration"
+      },
+      {
+        "module_id": "MOD-005",
+        "module_name": "银行余额日报模块",
+        "module_type": "daily_report"
+      },
+      {
+        "module_id": "MOD-006",
+        "module_name": "开票与单据管理模块",
+        "module_type": "invoice_doc"
+      },
+      {
+        "module_id": "MOD-007",
+        "module_name": "风险预警模块",
+        "module_type": "risk"
+      },
+      {
+        "module_id": "MOD-008",
+        "module_name": "智能咨询模块",
+        "module_type": "qa"
+      }
+    ],
+    "source_pages": [
+      {
+        "page_id": "PAGE-001",
+        "page_name": "银行流水同步",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-001",
+          "MOD-004"
+        ],
+        "related_features": [
+          "FEAT-001"
+        ]
+      },
+      {
+        "page_id": "PAGE-002",
+        "page_name": "自动记账凭证列表",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-001"
+        ],
+        "related_features": [
+          "FEAT-004",
+          "FEAT-005"
+        ]
+      },
+      {
+        "page_id": "PAGE-003",
+        "page_name": "凭证审核",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-001",
+          "MOD-007"
+        ],
+        "related_features": [
+          "FEAT-005"
+        ]
+      },
+      {
+        "page_id": "PAGE-004",
+        "page_name": "凭证历史",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-001"
+        ],
+        "related_features": [
+          "FEAT-006"
+        ]
+      },
+      {
+        "page_id": "PAGE-005",
+        "page_name": "标准报表查看",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-002"
+        ],
+        "related_features": [
+          "FEAT-007",
+          "FEAT-009"
+        ]
+      },
+      {
+        "page_id": "PAGE-006",
+        "page_name": "自定义报表设计",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-002"
+        ],
+        "related_features": [
+          "FEAT-008"
+        ]
+      },
+      {
+        "page_id": "PAGE-007",
+        "page_name": "报税申报",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-003"
+        ],
+        "related_features": [
+          "FEAT-010",
+          "FEAT-011",
+          "FEAT-012"
+        ]
+      },
+      {
+        "page_id": "PAGE-008",
+        "page_name": "申报记录",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-003"
+        ],
+        "related_features": [
+          "FEAT-013"
+        ]
+      },
+      {
+        "page_id": "PAGE-009",
+        "page_name": "银行余额日报",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-005"
+        ],
+        "related_features": [
+          "FEAT-016",
+          "FEAT-017"
+        ]
+      },
+      {
+        "page_id": "PAGE-010",
+        "page_name": "发票识别与校验",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-004"
+        ],
+        "related_features": [
+          "FEAT-014",
+          "FEAT-015"
+        ]
+      },
+      {
+        "page_id": "PAGE-011",
+        "page_name": "开票管理",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-006"
+        ],
+        "related_features": [
+          "FEAT-018",
+          "FEAT-019"
+        ]
+      },
+      {
+        "page_id": "PAGE-012",
+        "page_name": "单据智能生成",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-006"
+        ],
+        "related_features": [
+          "FEAT-020",
+          "FEAT-021"
+        ]
+      },
+      {
+        "page_id": "PAGE-013",
+        "page_name": "风险预警概览",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-007"
+        ],
+        "related_features": [
+          "FEAT-022",
+          "FEAT-023"
+        ]
+      },
+      {
+        "page_id": "PAGE-014",
+        "page_name": "AI智能咨询",
+        "page_category": "user_page",
+        "related_modules": [
+          "MOD-008"
+        ],
+        "related_features": [
+          "FEAT-024",
+          "FEAT-025"
+        ]
+      },
+      {
+        "page_id": "PAGE-015",
+        "page_name": "系统设置",
+        "page_category": "management_page",
+        "related_modules": [
+          "MOD-001",
+          "MOD-003",
+          "MOD-005",
+          "MOD-007"
+        ],
+        "related_features": [
+          "FEAT-026"
+        ]
+      },
+      {
+        "page_id": "PAGE-016",
+        "page_name": "数据源管理",
+        "page_category": "management_page",
+        "related_modules": [
+          "MOD-001",
+          "MOD-004",
+          "MOD-006"
+        ],
+        "related_features": [
+          "FEAT-027"
+        ]
+      },
+      {
+        "page_id": "PAGE-017",
+        "page_name": "操作日志",
+        "page_category": "management_page",
+        "related_modules": [
+          "MOD-001",
+          "MOD-002",
+          "MOD-003",
+          "MOD-004",
+          "MOD-005",
+          "MOD-006",
+          "MOD-007",
+          "MOD-008"
+        ],
+        "related_features": [
+          "FEAT-028"
+        ]
+      }
+    ],
+    "source_features": [
+      {
+        "feature_id": "FEAT-001",
+        "feature_name": "银行流水对接"
+      },
+      {
+        "feature_id": "FEAT-002",
+        "feature_name": "交易性质识别"
+      },
+      {
+        "feature_id": "FEAT-003",
+        "feature_name": "会计科目匹配"
+      },
+      {
+        "feature_id": "FEAT-004",
+        "feature_name": "凭证自动生成"
+      },
+      {
+        "feature_id": "FEAT-005",
+        "feature_name": "凭证人工审核"
+      },
+      {
+        "feature_id": "FEAT-006",
+        "feature_name": "凭证历史追溯"
+      },
+      {
+        "feature_id": "FEAT-007",
+        "feature_name": "标准报表生成"
+      },
+      {
+        "feature_id": "FEAT-008",
+        "feature_name": "自定义报表设计"
+      },
+      {
+        "feature_id": "FEAT-009",
+        "feature_name": "报表对比导出"
+      },
+      {
+        "feature_id": "FEAT-010",
+        "feature_name": "税额自动计算"
+      },
+      {
+        "feature_id": "FEAT-011",
+        "feature_name": "申报表生成"
+      },
+      {
+        "feature_id": "FEAT-012",
+        "feature_name": "一键申报"
+      },
+      {
+        "feature_id": "FEAT-013",
+        "feature_name": "申报记录管理"
+      },
+      {
+        "feature_id": "FEAT-014",
+        "feature_name": "发票信息识别"
+      },
+      {
+        "feature_id": "FEAT-015",
+        "feature_name": "流水交叉校验"
+      },
+      {
+        "feature_id": "FEAT-016",
+        "feature_name": "每日银行余额获取"
+      },
+      {
+        "feature_id": "FEAT-017",
+        "feature_name": "日报生成与展示"
+      },
+      {
+        "feature_id": "FEAT-018",
+        "feature_name": "开票需求识别"
+      },
+      {
+        "feature_id": "FEAT-019",
+        "feature_name": "自动开票"
+      },
+      {
+        "feature_id": "FEAT-020",
+        "feature_name": "单据影像识别"
+      },
+      {
+        "feature_id": "FEAT-021",
+        "feature_name": "标准单据生成"
+      },
+      {
+        "feature_id": "FEAT-022",
+        "feature_name": "预警引擎"
+      },
+      {
+        "feature_id": "FEAT-023",
+        "feature_name": "风险处置"
+      },
+      {
+        "feature_id": "FEAT-024",
+        "feature_name": "AI知识问答"
+      },
+      {
+        "feature_id": "FEAT-025",
+        "feature_name": "个性化解答"
+      },
+      {
+        "feature_id": "FEAT-026",
+        "feature_name": "系统参数配置"
+      },
+      {
+        "feature_id": "FEAT-027",
+        "feature_name": "外部数据源管理"
+      },
+      {
+        "feature_id": "FEAT-028",
+        "feature_name": "操作日志记录"
+      }
+    ],
+    "source_roles": [
+      {
+        "role_id": "ROLE-001",
+        "role_name": "财务人员"
+      },
+      {
+        "role_id": "ROLE-002",
+        "role_name": "财务主管"
+      },
+      {
+        "role_id": "ROLE-003",
+        "role_name": "系统管理员"
+      },
+      {
+        "role_id": "ROLE-004",
+        "role_name": "企业高管"
+      }
+    ]
+  },
+  "global_acceptance_rules": [
+    {
+      "rule_id": "GLOBAL-001",
+      "description": "所有页面必须在真实浏览器中加载，无500/404错误，白屏时间不超过3秒",
+      "applies_to": "all_pages",
+      "severity": "blocker",
+      "check_method": "browser_open_with_console_log"
+    },
+    {
+      "rule_id": "GLOBAL-002",
+      "description": "所有功能操作必须基于当前角色权限进行，未授权用户无法访问或操作对应功能",
+      "applies_to": "security_visibility",
+      "severity": "blocker",
+      "check_method": "role_switch_permission_test"
+    },
+    {
+      "rule_id": "GLOBAL-003",
+      "description": "用户可见的所有字段必须正确显示，类型一致（如金额保留两位小数，日期格式正确）",
+      "applies_to": "all_pages",
+      "severity": "major",
+      "check_method": "visual_inspection_and_value_check"
+    },
+    {
+      "rule_id": "GLOBAL-004",
+      "description": "每条同步/提交/审核等异步操作必须显示明确的加载状态（如进度条或loading提示），完成后更新状态或给出反馈",
+      "applies_to": "workflow",
+      "severity": "major",
+      "check_method": "interaction_trace_and_screenshot"
+    },
+    {
+      "rule_id": "GLOBAL-005",
+      "description": "所有敏感字段（如认证密钥）必须加密存储，页面上显示为掩码",
+      "applies_to": "security_visibility",
+      "severity": "blocker",
+      "check_method": "inspect_input_field_type_and_network_log"
+    },
+    {
+      "rule_id": "GLOBAL-006",
+      "description": "AI功能（识别、推荐、问答）必须提供置信度或参考来源，用户可进行反馈",
+      "applies_to": "human_simulation",
+      "severity": "major",
+      "check_method": "use_feature_and_check_display"
+    }
+  ],
+  "page_acceptance": [
+    {
+      "page_id": "PAGE-001",
+      "page_name": "银行流水同步",
+      "page_route": "/bank-stream-sync",
+      "acceptance_priority": "P1",
+      "description": "手动或自动同步银行流水数据，供记账使用",
+      "functions": [
+        {
+          "function_name": "银行流水同步 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "手动或自动同步银行流水数据，供记账使用"
+        },
+        {
+          "function_name": "银行流水同步 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "银行流水同步 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-002",
+      "page_name": "自动记账凭证列表",
+      "page_route": "/vouchers",
+      "acceptance_priority": "P1",
+      "description": "查看、搜索、筛选AI生成的记账凭证，进行批量操作",
+      "functions": [
+        {
+          "function_name": "自动记账凭证列表 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看、搜索、筛选AI生成的记账凭证，进行批量操作"
+        },
+        {
+          "function_name": "自动记账凭证列表 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "自动记账凭证列表 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-003",
+      "page_name": "凭证审核",
+      "page_route": "/voucher-review",
+      "acceptance_priority": "P1",
+      "description": "对AI生成的凭证进行人工复核，确认或修改",
+      "functions": [
+        {
+          "function_name": "凭证审核 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "对AI生成的凭证进行人工复核，确认或修改"
+        },
+        {
+          "function_name": "凭证审核 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "凭证审核 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-004",
+      "page_name": "凭证历史",
+      "page_route": "/voucher-history",
+      "acceptance_priority": "P1",
+      "description": "查看所有凭证的修改痕迹与审计日志",
+      "functions": [
+        {
+          "function_name": "凭证历史 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看所有凭证的修改痕迹与审计日志"
+        },
+        {
+          "function_name": "凭证历史 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "凭证历史 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-005",
+      "page_name": "标准报表查看",
+      "page_route": "/reports/standard",
+      "acceptance_priority": "P1",
+      "description": "查看资产负债表、利润表、现金流量表等",
+      "functions": [
+        {
+          "function_name": "标准报表查看 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看资产负债表、利润表、现金流量表等"
+        },
+        {
+          "function_name": "标准报表查看 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "标准报表查看 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-006",
+      "page_name": "自定义报表设计",
+      "page_route": "/reports/custom",
+      "acceptance_priority": "P1",
+      "description": "创建、编辑、预览自定义报表",
+      "functions": [
+        {
+          "function_name": "自定义报表设计 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "创建、编辑、预览自定义报表"
+        },
+        {
+          "function_name": "自定义报表设计 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "自定义报表设计 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-007",
+      "page_name": "报税申报",
+      "page_route": "/tax-filing",
+      "acceptance_priority": "P1",
+      "description": "查看应缴税额、生成申报表、提交申报",
+      "functions": [
+        {
+          "function_name": "报税申报 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看应缴税额、生成申报表、提交申报"
+        },
+        {
+          "function_name": "报税申报 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "报税申报 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-008",
+      "page_name": "申报记录",
+      "page_route": "/tax-records",
+      "acceptance_priority": "P1",
+      "description": "查看历史申报记录与详情",
+      "functions": [
+        {
+          "function_name": "申报记录 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看历史申报记录与详情"
+        },
+        {
+          "function_name": "申报记录 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "申报记录 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-009",
+      "page_name": "银行余额日报",
+      "page_route": "/daily-dashboard",
+      "acceptance_priority": "P1",
+      "description": "查看每日银行余额、流水明细、收支汇总",
+      "functions": [
+        {
+          "function_name": "银行余额日报 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看每日银行余额、流水明细、收支汇总"
+        },
+        {
+          "function_name": "银行余额日报 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "银行余额日报 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-010",
+      "page_name": "发票识别与校验",
+      "page_route": "/invoice-recognition",
+      "acceptance_priority": "P1",
+      "description": "上传发票影像，AI识别信息，与银行流水交叉校验",
+      "functions": [
+        {
+          "function_name": "发票识别与校验 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "上传发票影像，AI识别信息，与银行流水交叉校验"
+        },
+        {
+          "function_name": "发票识别与校验 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "发票识别与校验 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-011",
+      "page_name": "开票管理",
+      "page_route": "/invoice-issuance",
+      "acceptance_priority": "P1",
+      "description": "查看开票需求、执行自动开票、管理开票记录",
+      "functions": [
+        {
+          "function_name": "开票管理 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看开票需求、执行自动开票、管理开票记录"
+        },
+        {
+          "function_name": "开票管理 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "开票管理 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-012",
+      "page_name": "单据智能生成",
+      "page_route": "/document-generation",
+      "acceptance_priority": "P1",
+      "description": "上传出入库单、合同等影像，AI提取信息生成标准单据",
+      "functions": [
+        {
+          "function_name": "单据智能生成 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "上传出入库单、合同等影像，AI提取信息生成标准单据"
+        },
+        {
+          "function_name": "单据智能生成 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "单据智能生成 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-013",
+      "page_name": "风险预警概览",
+      "page_route": "/risk-overview",
+      "acceptance_priority": "P1",
+      "description": "查看所有风险预警（报表、税务、资金）详情与处理",
+      "functions": [
+        {
+          "function_name": "风险预警概览 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看所有风险预警（报表、税务、资金）详情与处理"
+        },
+        {
+          "function_name": "风险预警概览 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "风险预警概览 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-014",
+      "page_name": "AI智能咨询",
+      "page_route": "/ai-consult",
+      "acceptance_priority": "P1",
+      "description": "提问财务知识、获取操作指导、个性化建议",
+      "functions": [
+        {
+          "function_name": "AI智能咨询 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "提问财务知识、获取操作指导、个性化建议"
+        },
+        {
+          "function_name": "AI智能咨询 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "AI智能咨询 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-015",
+      "page_name": "系统设置",
+      "page_route": "/admin/settings",
+      "acceptance_priority": "P1",
+      "description": "配置记账周期、报税日期、预警阈值、对接参数等",
+      "functions": [
+        {
+          "function_name": "系统设置 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "配置记账周期、报税日期、预警阈值、对接参数等"
+        },
+        {
+          "function_name": "系统设置 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "系统设置 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-016",
+      "page_name": "数据源管理",
+      "page_route": "/admin/datasources",
+      "acceptance_priority": "P1",
+      "description": "管理银行账户、发票系统、税务系统等外部连接",
+      "functions": [
+        {
+          "function_name": "数据源管理 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "管理银行账户、发票系统、税务系统等外部连接"
+        },
+        {
+          "function_name": "数据源管理 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "数据源管理 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    },
+    {
+      "page_id": "PAGE-017",
+      "page_name": "操作日志",
+      "page_route": "/admin/logs",
+      "acceptance_priority": "P1",
+      "description": "查看系统操作记录、修改痕迹、审计日志",
+      "functions": [
+        {
+          "function_name": "操作日志 - Main View",
+          "acceptance": "Page renders with correct layout, all UI elements visible and interactive as designed",
+          "description": "查看系统操作记录、修改痕迹、审计日志"
+        },
+        {
+          "function_name": "操作日志 - Data Display",
+          "acceptance": "Page displays correct data from backend; loading and empty states handled properly",
+          "description": "Data display verification"
+        },
+        {
+          "function_name": "操作日志 - User Interaction",
+          "acceptance": "All interactive elements (buttons, forms, links) respond correctly to user input",
+          "description": "User interaction verification"
+        }
+      ]
+    }
+  ],
+  "feature_acceptance": [
+    {
+      "feature_id": "FEAT-001",
+      "feature_name": "银行流水对接",
+      "related_pages": [
+        "PAGE-001"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-001-AC-01",
+          "criteria": "支持手动触发同步和自动定时同步（频率可配置）"
+        },
+        {
+          "id": "FEAT-001-AC-02",
+          "criteria": "同步成功后银行流水数据正确写入系统，PAGE-001同步记录显示处理流水条数"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-002",
+      "feature_name": "交易性质识别",
+      "related_pages": [
+        "PAGE-003"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-002-AC-01",
+          "criteria": "AI能够分析流水并归类为收入、支出、往来款项"
+        },
+        {
+          "id": "FEAT-002-AC-02",
+          "criteria": "在凭证审核页面显示AI置信度"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-003",
+      "feature_name": "会计科目匹配",
+      "related_pages": [
+        "PAGE-003"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-003-AC-01",
+          "criteria": "根据交易性质、摘要、金额自动推荐会计科目"
+        },
+        {
+          "id": "FEAT-003-AC-02",
+          "criteria": "推荐科目在凭证审核页面可修改"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-004",
+      "feature_name": "凭证自动生成",
+      "related_pages": [
+        "PAGE-002"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-004-AC-01",
+          "criteria": "系统根据流水自动生成记账凭证"
+        },
+        {
+          "id": "FEAT-004-AC-02",
+          "criteria": "生成的凭证出现在PAGE-002列表中，状态为‘待审核’"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-005",
+      "feature_name": "凭证人工审核",
+      "related_pages": [
+        "PAGE-002",
+        "PAGE-003"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-005-AC-01",
+          "criteria": "在PAGE-002支持批量审核，在PAGE-003支持逐条修改、通过、驳回"
+        },
+        {
+          "id": "FEAT-005-AC-02",
+          "criteria": "所有修改记录痕迹可追溯"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-006",
+      "feature_name": "凭证历史追溯",
+      "related_pages": [
+        "PAGE-004"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-006-AC-01",
+          "criteria": "PAGE-004展示凭证每次变更的详细记录"
+        },
+        {
+          "id": "FEAT-006-AC-02",
+          "criteria": "支持按条件筛选，可导出Excel"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-007",
+      "feature_name": "标准报表生成",
+      "related_pages": [
+        "PAGE-005"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-007-AC-01",
+          "criteria": "资产负债表、利润表、现金流量表自动生成，数据准确"
+        },
+        {
+          "id": "FEAT-007-AC-02",
+          "criteria": "报表支持切换期间和版本对比"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-008",
+      "feature_name": "自定义报表设计",
+      "related_pages": [
+        "PAGE-006"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-008-AC-01",
+          "criteria": "用户可从科目树选择行项目，配置公式和汇总方式"
+        },
+        {
+          "id": "FEAT-008-AC-02",
+          "criteria": "模板可保存，在标准报表区可用"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-009",
+      "feature_name": "报表对比导出",
+      "related_pages": [
+        "PAGE-005"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-009-AC-01",
+          "criteria": "支持导出PDF和Excel格式"
+        },
+        {
+          "id": "FEAT-009-AC-02",
+          "criteria": "两期对比时差异行高亮"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-010",
+      "feature_name": "税额自动计算",
+      "related_pages": [
+        "PAGE-007"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-010-AC-01",
+          "criteria": "根据报表与税务政策自动计算增值税、所得税等预估值"
+        },
+        {
+          "id": "FEAT-010-AC-02",
+          "criteria": "在税额概览区显示"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-011",
+      "feature_name": "申报表生成",
+      "related_pages": [
+        "PAGE-007"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-011-AC-01",
+          "criteria": "根据税额生成符合税务格式的申报表"
+        },
+        {
+          "id": "FEAT-011-AC-02",
+          "criteria": "可在页面预览"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-012",
+      "feature_name": "一键申报",
+      "related_pages": [
+        "PAGE-007"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-012-AC-01",
+          "criteria": "点击一键申报后调用税务接口，返回成功/失败/受理中"
+        },
+        {
+          "id": "FEAT-012-AC-02",
+          "criteria": "申报记录写入PAGE-008"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-013",
+      "feature_name": "申报记录管理",
+      "related_pages": [
+        "PAGE-008"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-013-AC-01",
+          "criteria": "列表展示历史申报记录，支持查看详情和打印"
+        },
+        {
+          "id": "FEAT-013-AC-02",
+          "criteria": "状态与税务系统回执一致"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-014",
+      "feature_name": "发票信息识别",
+      "related_pages": [
+        "PAGE-010"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-014-AC-01",
+          "criteria": "上传发票影像后AI提取抬头、金额、税率、业务内容"
+        },
+        {
+          "id": "FEAT-014-AC-02",
+          "criteria": "识别结果准确，支持预览"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-015",
+      "feature_name": "流水交叉校验",
+      "related_pages": [
+        "PAGE-010"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-015-AC-01",
+          "criteria": "系统将发票信息与银行流水匹配，显示匹配状态（matched/mismatch/pending）"
+        },
+        {
+          "id": "FEAT-015-AC-02",
+          "criteria": "不一致时提示差异详情"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-016",
+      "feature_name": "每日银行余额获取",
+      "related_pages": [
+        "PAGE-009"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-016-AC-01",
+          "criteria": "系统每日定时获取各银行账户余额"
+        },
+        {
+          "id": "FEAT-016-AC-02",
+          "criteria": "余额数据正确显示在日报中"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-017",
+      "feature_name": "日报生成与展示",
+      "related_pages": [
+        "PAGE-009"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-017-AC-01",
+          "criteria": "自动生成包含余额、收支明细的日报表"
+        },
+        {
+          "id": "FEAT-017-AC-02",
+          "criteria": "支持导出和查看历史日报"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-018",
+      "feature_name": "开票需求识别",
+      "related_pages": [
+        "PAGE-011"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-018-AC-01",
+          "criteria": "从销售订单/出库单自动识别待开票项目"
+        },
+        {
+          "id": "FEAT-018-AC-02",
+          "criteria": "在开票需求列表中显示"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-019",
+      "feature_name": "自动开票",
+      "related_pages": [
+        "PAGE-011"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-019-AC-01",
+          "criteria": "选择需求后批量开票，系统调用开票接口生成发票"
+        },
+        {
+          "id": "FEAT-019-AC-02",
+          "criteria": "开票记录出现在开票记录区"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-020",
+      "feature_name": "单据影像识别",
+      "related_pages": [
+        "PAGE-012"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-020-AC-01",
+          "criteria": "OCR识别出入库单、合同等影像，提取关键字段"
+        },
+        {
+          "id": "FEAT-020-AC-02",
+          "criteria": "识别结果支持人工修正"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-021",
+      "feature_name": "标准单据生成",
+      "related_pages": [
+        "PAGE-012"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-021-AC-01",
+          "criteria": "根据识别结果生成标准财务单据，同步至业务系统"
+        },
+        {
+          "id": "FEAT-021-AC-02",
+          "criteria": "状态变为‘已同步’"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-022",
+      "feature_name": "预警引擎",
+      "related_pages": [
+        "PAGE-013"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-022-AC-01",
+          "criteria": "基于预设阈值与历史数据检测报表异常、税务合规、资金风险"
+        },
+        {
+          "id": "FEAT-022-AC-02",
+          "criteria": "预警列表正确显示风险类型、等级、描述"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-023",
+      "feature_name": "风险处置",
+      "related_pages": [
+        "PAGE-013"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-023-AC-01",
+          "criteria": "用户可标记预警为已处理，记录处理人及时间"
+        },
+        {
+          "id": "FEAT-023-AC-02",
+          "criteria": "处理后预警状态更新"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-024",
+      "feature_name": "AI知识问答",
+      "related_pages": [
+        "PAGE-014"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-024-AC-01",
+          "criteria": "用户提问后AI返回财务法规、操作指南等回答"
+        },
+        {
+          "id": "FEAT-024-AC-02",
+          "criteria": "回答包含引用来源"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-025",
+      "feature_name": "个性化解答",
+      "related_pages": [
+        "PAGE-014"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-025-AC-01",
+          "criteria": "AI可结合企业实际数据提供建议"
+        },
+        {
+          "id": "FEAT-025-AC-02",
+          "criteria": "反馈收集功能正常"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-026",
+      "feature_name": "系统参数配置",
+      "related_pages": [
+        "PAGE-015"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-026-AC-01",
+          "criteria": "记账周期、报税截止日、预警阈值等参数可配置并生效"
+        },
+        {
+          "id": "FEAT-026-AC-02",
+          "criteria": "支持恢复默认"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-027",
+      "feature_name": "外部数据源管理",
+      "related_pages": [
+        "PAGE-016"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-027-AC-01",
+          "criteria": "支持添加、编辑、删除银行、发票、税务接口配置"
+        },
+        {
+          "id": "FEAT-027-AC-02",
+          "criteria": "测试连接功能有效"
+        }
+      ],
+      "acceptance_priority": "P1"
+    },
+    {
+      "feature_id": "FEAT-028",
+      "feature_name": "操作日志记录",
+      "related_pages": [
+        "PAGE-017"
+      ],
+      "acceptance_criteria": [
+        {
+          "id": "FEAT-028-AC-01",
+          "criteria": "所有用户操作和系统事件被记录"
+        },
+        {
+          "id": "FEAT-028-AC-02",
+          "criteria": "日志支持筛选、查看详情和导出CSV"
+        }
+      ],
+      "acceptance_priority": "P1"
+    }
+  ],
+  "workflow_acceptance": [
+    {
+      "workflow_id": "WF-001",
+      "workflow_name": "银行流水同步与凭证生成",
+      "involved_pages": [
+        "PAGE-001",
+        "PAGE-002",
+        "PAGE-003"
+      ],
+      "involved_features": [
+        "FEAT-001",
+        "FEAT-002",
+        "FEAT-003",
+        "FEAT-004",
+        "FEAT-005"
+      ],
+      "steps": [
+        "财务人员进入PAGE-001，选择银行账户，点击‘立即同步’",
+        "系统同步流水，同步记录状态变为成功",
+        "流水数据进入AI模型，自动生成记账凭证",
+        "财务人员进入PAGE-002，查看新生成的凭证列表",
+        "点击凭证进入PAGE-003审核，确认无误后审核通过"
+      ],
+      "acceptance_criteria": [
+        "同步成功后，流水数据应在5分钟内完成AI处理并生成凭证",
+        "凭证状态流转正确：待审核→已审核"
+      ]
+    },
+    {
+      "workflow_id": "WF-002",
+      "workflow_name": "报税申报流程",
+      "involved_pages": [
+        "PAGE-005",
+        "PAGE-007",
+        "PAGE-008"
+      ],
+      "involved_features": [
+        "FEAT-007",
+        "FEAT-010",
+        "FEAT-011",
+        "FEAT-012",
+        "FEAT-013"
+      ],
+      "steps": [
+        "财务人员进入PAGE-005查看标准报表，确认数据",
+        "进入PAGE-007，查看税额概览，点击‘生成申报表’",
+        "预览申报表，点击‘一键申报’",
+        "系统返回申报结果，自动跳转至PAGE-008查看记录"
+      ],
+      "acceptance_criteria": [
+        "申报表数据与标准报表一致",
+        "一键申报后PAGE-008记录状态正确"
+      ]
+    },
+    {
+      "workflow_id": "WF-003",
+      "workflow_name": "发票识别与交叉校验并推送记账",
+      "involved_pages": [
+        "PAGE-010",
+        "PAGE-002"
+      ],
+      "involved_features": [
+        "FEAT-014",
+        "FEAT-015",
+        "FEAT-004"
+      ],
+      "steps": [
+        "财务人员进入PAGE-010，上传发票影像",
+        "AI完成识别，显示识别结果",
+        "系统自动进行交叉校验，显示匹配状态",
+        "用户点击‘校验并推送’，系统创建记账凭证草稿",
+        "财务人员进入PAGE-002查看新凭证"
+      ],
+      "acceptance_criteria": [
+        "交叉校验匹配时凭证自动创建；不匹配时给出差异提示",
+        "凭证出现在PAGE-002列表中，状态为待审核"
+      ]
+    }
+  ],
+  "human_simulation_acceptance": [
+    {
+      "scenario_id": "HSA-001",
+      "scenario_name": "财务人员执行银行流水同步并审核凭证",
+      "roles": [
+        "财务人员"
+      ],
+      "related_pages": [
+        "PAGE-001",
+        "PAGE-002",
+        "PAGE-003"
+      ],
+      "expected_flow": "财务人员登录系统，导航至银行流水同步页面，手动触发同步，等待同步完成后进入凭证列表查看AI生成的凭证，然后进入审核页面通过该凭证。",
+      "acceptance_criteria": [
+        "同步后流水数据正确显示在流水详情中",
+        "AI生成凭证的科目和金额准确",
+        "审核通过后凭证状态变为‘已审核’"
+      ],
+      "browser_execution": {
+        "entry_url_or_route": "/bank-stream-sync",
+        "required": true,
+        "must_record_steps": true,
+        "must_capture_screenshot": true,
+        "must_capture_console_log": true,
+        "must_capture_network_log": true,
+        "failure_location_required": true,
+        "steps": [
+          "以财务人员角色登录系统，进入首页",
+          "点击侧边导航‘银行流水同步’，进入PAGE-001",
+          "选择第一个银行账户，点击‘立即同步’按钮",
+          "观察同步记录列表，等待状态变为‘成功’",
+          "点击该同步记录的‘查看流水详情’，确认弹窗显示流水数据（日期、金额、摘要）",
+          "关闭弹窗，导航至‘自动记账凭证列表’（PAGE-002）",
+          "在列表中确认出现新凭证（同一银行流水生成）",
+          "点击该凭证行，跳转至凭证审核页面（PAGE-003）",
+          "在审核页面检查凭证分录，点击‘审核通过’",
+          "返回凭证列表，确认该凭证状态变为‘已审核’"
+        ]
+      },
+      "acceptance_priority": "P1"
+    },
+    {
+      "scenario_id": "HSA-002",
+      "scenario_name": "财务主管进行报税申报并查看记录",
+      "roles": [
+        "财务主管"
+      ],
+      "related_pages": [
+        "PAGE-005",
+        "PAGE-007",
+        "PAGE-008"
+      ],
+      "expected_flow": "财务主管登录，先查看标准报表确认数据，然后进入报税申报页面生成并提交申报，最后在申报记录中确认结果。",
+      "acceptance_criteria": [
+        "报表数据准确，申报表预览正确",
+        "一键申报后系统调用接口成功，记录状态为‘成功’",
+        "申报记录可查看详情并打印"
+      ],
+      "browser_execution": {
+        "entry_url_or_route": "/reports/standard",
+        "required": true,
+        "must_record_steps": true,
+        "must_capture_screenshot": true,
+        "must_capture_console_log": true,
+        "must_capture_network_log": true,
+        "failure_location_required": true,
+        "steps": [
+          "以财务主管角色登录系统",
+          "进入‘标准报表查看’（PAGE-005），选择资产负债表-月度，确认数据展示",
+          "导航至‘报税申报’（PAGE-007）",
+          "查看税额概览，确认各税种预估值",
+          "点击‘生成申报表’，等待预览刷新",
+          "点击‘一键申报’，等待系统提交",
+          "查看返回结果，点击‘查看申报记录’或自行导航至PAGE-008",
+          "在申报记录列表中找到刚提交的记录，点击查看详情",
+          "确认回执单号与申报表内容正确，点击‘打印申报表’调出打印预览"
+        ]
+      },
+      "acceptance_priority": "P1"
+    },
+    {
+      "scenario_id": "HSA-003",
+      "scenario_name": "系统管理员配置数据源并测试连接",
+      "roles": [
+        "系统管理员"
+      ],
+      "related_pages": [
+        "PAGE-016"
+      ],
+      "expected_flow": "系统管理员登录，进入数据源管理页面，添加一个新的银行接口配置，填写参数后测试连接，确认成功后再保存。",
+      "acceptance_criteria": [
+        "新增数据源后列表展示更新",
+        "测试连接返回成功信息",
+        "保存后连接状态变为‘在线’"
+      ],
+      "browser_execution": {
+        "entry_url_or_route": "/admin/datasources",
+        "required": true,
+        "must_record_steps": true,
+        "must_capture_screenshot": true,
+        "must_capture_console_log": true,
+        "must_capture_network_log": true,
+        "failure_location_required": true,
+        "steps": [
+          "以系统管理员角色登录系统",
+          "导航至‘数据源管理’（PAGE-016）",
+          "确认数据源列表显示已有配置及其状态",
+          "点击‘添加数据源’，弹出配置表单",
+          "填写名称、选择类型‘bank’，输入API端点（如https://api.example.com/bank）和认证密钥",
+          "点击‘测试连接’按钮，系统返回‘连接成功’提示",
+          "点击‘保存配置’，列表新增一条记录，状态显示‘在线’",
+          "确认最后活动时间更新"
+        ]
+      },
+      "acceptance_priority": "P1"
+    }
+  ],
+  "field_acceptance": [
+    {
+      "field_name": "account_bank_name",
+      "page_id": "PAGE-001",
+      "label": "银行名称",
+      "validation_rules": "非空，显示完整银行名称",
+      "acceptance_criteria": "字段必须显示并接受中文银行名称，不能为空"
+    },
+    {
+      "field_name": "sync_frequency",
+      "page_id": "PAGE-001",
+      "label": "同步频率",
+      "validation_rules": "可选值：manual, every_hour, every_day",
+      "acceptance_criteria": "下拉列表必须包含这三个选项，选中后保存生效"
+    },
+    {
+      "field_name": "last_sync_time",
+      "page_id": "PAGE-001",
+      "label": "最后同步时间",
+      "validation_rules": "日期时间格式",
+      "acceptance_criteria": "必须显示上一次同步的准确时间，格式如2026-07-30 10:40"
+    },
+    {
+      "field_name": "sync_status",
+      "page_id": "PAGE-001",
+      "label": "同步状态",
+      "validation_rules": "仅显示success, failed, in_progress",
+      "acceptance_criteria": "同步过程中状态显示in_progress，完成后变为success或failed"
+    },
+    {
+      "field_name": "voucher_id",
+      "page_id": "PAGE-002",
+      "label": "凭证编号",
+      "validation_rules": "系统生成唯一编号",
+      "acceptance_criteria": "凭证编号必须唯一且显示完整编号字符串"
+    },
+    {
+      "field_name": "debit_amount",
+      "page_id": "PAGE-002",
+      "label": "借方金额",
+      "validation_rules": "大于0，两位小数",
+      "acceptance_criteria": "金额显示如1000.00，不能有三位小数"
+    },
+    {
+      "field_name": "credit_amount",
+      "page_id": "PAGE-002",
+      "label": "贷方金额",
+      "validation_rules": "大于0，两位小数",
+      "acceptance_criteria": "金额显示如1000.00，借贷平衡"
+    },
+    {
+      "field_name": "status",
+      "page_id": "PAGE-002",
+      "label": "状态",
+      "validation_rules": "可选值：pending_review, reviewed, voided",
+      "acceptance_criteria": "下拉筛选和列表显示必须使用这些状态的显示文本（如‘待审核’）"
+    },
+    {
+      "field_name": "ai_confidence",
+      "page_id": "PAGE-003",
+      "label": "AI置信度",
+      "validation_rules": "0-1之间小数",
+      "acceptance_criteria": "显示如0.85，体现AI匹配准确程度"
+    },
+    {
+      "field_name": "change_type",
+      "page_id": "PAGE-004",
+      "label": "操作类型",
+      "validation_rules": "可选值：created, modified, reviewed, voided",
+      "acceptance_criteria": "列表中正确显示操作类型的中文标签"
+    },
+    {
+      "field_name": "report_type",
+      "page_id": "PAGE-005",
+      "label": "报表类型",
+      "validation_rules": "可选值：balance_sheet, income_statement, cash_flow",
+      "acceptance_criteria": "下拉选择正确，选中后切换报表内容"
+    },
+    {
+      "field_name": "template_name",
+      "page_id": "PAGE-006",
+      "label": "模板名称",
+      "validation_rules": "非空，长度1-100",
+      "acceptance_criteria": "输入框接受合法字符，长度校验"
+    },
+    {
+      "field_name": "estimated_amount",
+      "page_id": "PAGE-007",
+      "label": "预估税额",
+      "validation_rules": "两位小数",
+      "acceptance_criteria": "如1000.00，显示时带货币符号"
+    },
+    {
+      "field_name": "receipt_number",
+      "page_id": "PAGE-008",
+      "label": "回执编号",
+      "validation_rules": "可为空",
+      "acceptance_criteria": "申报成功后显示税务系统返回的回执编号"
+    },
+    {
+      "field_name": "current_balance",
+      "page_id": "PAGE-009",
+      "label": "当前余额",
+      "validation_rules": "两位小数",
+      "acceptance_criteria": "与银行系统余额一致"
+    },
+    {
+      "field_name": "cross_validation_status",
+      "page_id": "PAGE-010",
+      "label": "校验状态",
+      "validation_rules": "可选值：matched, mismatch, pending",
+      "acceptance_criteria": "状态显示正确，如‘已匹配’或‘不匹配’"
+    },
+    {
+      "field_name": "issuance_status",
+      "page_id": "PAGE-011",
+      "label": "开票状态",
+      "validation_rules": "可选值：pending, issued, voided",
+      "acceptance_criteria": "开票后状态变为‘已开’"
+    },
+    {
+      "field_name": "document_type",
+      "page_id": "PAGE-012",
+      "label": "单据类型",
+      "validation_rules": "可选值：purchase_order, sales_order, warehouse_receipt, warehouse_issue",
+      "acceptance_criteria": "下拉选项正确，选中后影响模板"
+    },
+    {
+      "field_name": "risk_level",
+      "page_id": "PAGE-013",
+      "label": "风险等级",
+      "validation_rules": "可选值：high, medium, low",
+      "acceptance_criteria": "显示明确的等级标签，如‘高’"
+    },
+    {
+      "field_name": "question",
+      "page_id": "PAGE-014",
+      "label": "问题内容",
+      "validation_rules": "非空，长度1-500",
+      "acceptance_criteria": "输入框接受文本，发送后显示在对话区"
+    },
+    {
+      "field_name": "accounting_cycle_day",
+      "page_id": "PAGE-015",
+      "label": "记账周期日",
+      "validation_rules": "1-28整数",
+      "acceptance_criteria": "输入校验，保存后配置生效"
+    },
+    {
+      "field_name": "api_endpoint",
+      "page_id": "PAGE-016",
+      "label": "API地址",
+      "validation_rules": "URL格式",
+      "acceptance_criteria": "输入URL格式正确时测试连接通过"
+    },
+    {
+      "field_name": "operator",
+      "page_id": "PAGE-017",
+      "label": "操作人",
+      "validation_rules": "非空",
+      "acceptance_criteria": "显示用户名，可通过筛选过滤"
+    }
+  ],
+  "role_permission_acceptance": [
+    {
+      "role_id": "ROLE-001",
+      "role_name": "财务人员",
+      "allowed_pages": [
+        "PAGE-001",
+        "PAGE-002",
+        "PAGE-003",
+        "PAGE-004",
+        "PAGE-005",
+        "PAGE-006",
+        "PAGE-007",
+        "PAGE-008",
+        "PAGE-009",
+        "PAGE-010",
+        "PAGE-011",
+        "PAGE-012",
+        "PAGE-013",
+        "PAGE-014"
+      ],
+      "blocked_pages": [
+        "PAGE-015",
+        "PAGE-016",
+        "PAGE-017"
+      ],
+      "denied_pages": [
+        "admin/*",
+        "system_config/*",
+        "user_management/*"
+      ]
+    },
+    {
+      "role_id": "ROLE-002",
+      "role_name": "财务主管",
+      "allowed_pages": [
+        "PAGE-002",
+        "PAGE-003",
+        "PAGE-004",
+        "PAGE-005",
+        "PAGE-006",
+        "PAGE-007",
+        "PAGE-008",
+        "PAGE-013",
+        "PAGE-014",
+        "PAGE-017"
+      ],
+      "blocked_pages": [
+        "PAGE-001",
+        "PAGE-009",
+        "PAGE-010",
+        "PAGE-011",
+        "PAGE-012",
+        "PAGE-015",
+        "PAGE-016"
+      ],
+      "denied_pages": [
+        "admin/*",
+        "system_config/*",
+        "user_management/*"
+      ]
+    },
+    {
+      "role_id": "ROLE-003",
+      "role_name": "系统管理员",
+      "allowed_pages": [
+        "PAGE-001",
+        "PAGE-004",
+        "PAGE-014",
+        "PAGE-015",
+        "PAGE-016",
+        "PAGE-017"
+      ],
+      "blocked_pages": [
+        "PAGE-002",
+        "PAGE-003",
+        "PAGE-005",
+        "PAGE-006",
+        "PAGE-007",
+        "PAGE-008",
+        "PAGE-009",
+        "PAGE-010",
+        "PAGE-011",
+        "PAGE-012",
+        "PAGE-013"
+      ],
+      "denied_pages": []
+    },
+    {
+      "role_id": "ROLE-004",
+      "role_name": "企业高管",
+      "allowed_pages": [
+        "PAGE-005",
+        "PAGE-008",
+        "PAGE-009",
+        "PAGE-013",
+        "PAGE-014"
+      ],
+      "blocked_pages": [
+        "PAGE-001",
+        "PAGE-002",
+        "PAGE-003",
+        "PAGE-004",
+        "PAGE-006",
+        "PAGE-007",
+        "PAGE-010",
+        "PAGE-011",
+        "PAGE-012",
+        "PAGE-015",
+        "PAGE-016",
+        "PAGE-017"
+      ],
+      "denied_pages": [
+        "admin/*",
+        "system_config/*",
+        "user_management/*"
+      ]
+    }
+  ],
+  "user_visible_quality_acceptance": [
+    {
+      "category": "usability",
+      "criteria": [
+        "所有页面均有明确的标题和导航路径",
+        "操作按钮有悬停提示，点击有反馈（按钮按下效果或loading）",
+        "表单字段有标签和必填标记"
+      ]
+    },
+    {
+      "category": "accessibility_smoke",
+      "criteria": [
+        "页面可缩放至200%不失布局",
+        "Tab键能按逻辑顺序聚焦可交互元素",
+        "颜色对比度满足AA标准"
+      ]
+    },
+    {
+      "category": "security_visibility",
+      "criteria": [
+        "敏感字段（密钥）在页面上显示为掩码",
+        "页面上不直接暴露数据库或接口错误细节",
+        "未授权用户访问受限页面时重定向到登录或显示403页面"
+      ]
+    },
+    {
+      "category": "error_handling",
+      "criteria": [
+        "同步/提交失败时展示明确错误信息和重试建议",
+        "接口超时显示友好提示，不冻结页面",
+        "输入校验失败时字段标红并显示具体错误"
+      ]
+    },
+    {
+      "category": "data_consistency",
+      "criteria": [
+        "凭证列表中的金额与详情中的分录金额总和一致",
+        "标准报表数据与对应期间凭证汇总一致",
+        "银行余额日报中的余额与银行系统一致"
+      ]
+    },
+    {
+      "category": "performance_smoke",
+      "criteria": [
+        "页面首次加载完成时间不超过3秒（网络正常）",
+        "列表分页或无限滚动流畅，无卡顿",
+        "导出操作在5秒内给出响应或进度提示"
+      ]
+    }
+  ],
+  "acceptance_evidence_requirements": [
+    {
+      "evidence_type": "screenshot",
+      "description": "每个页面在关键操作前后的截图，包括初始加载、操作后状态、错误提示等",
+      "required": true
+    },
+    {
+      "evidence_type": "interaction_trace",
+      "description": "模拟用户操作的全流程交互轨迹记录（如点击坐标、输入文本、滚动）",
+      "required": true
+    },
+    {
+      "evidence_type": "multi_step_trace",
+      "description": "跨页面流程的连续交互记录，确保数据在页面间正确流转",
+      "required": true
+    },
+    {
+      "evidence_type": "network_log",
+      "description": "所有网络请求的日志，包括URL、状态码、请求体、响应体（不含敏感字段）",
+      "required": true
+    },
+    {
+      "evidence_type": "console_log",
+      "description": "浏览器控制台日志，包括error、warn、info级别，便于定位JS错误",
+      "required": true
+    },
+    {
+      "evidence_type": "role_based_screenshot",
+      "description": "同一页面在不同角色下的访问截图，验证权限控制",
+      "required": true
+    },
+    {
+      "evidence_type": "functional_result",
+      "description": "业务功能执行结果，如生成的凭证ID、申报回执编号、发票PDF内容等",
+      "required": true
+    },
+    {
+      "evidence_type": "configuration_reference",
+      "description": "系统配置截图，如数据源连接参数、预警阈值设置",
+      "required": true
+    },
+    {
+      "evidence_type": "failure_location_marker",
+      "description": "失败项在页面上的精确位置标记（截图标注或元素选择器）",
+      "required": true
+    }
+  ],
+  "browser_acceptance_policy": {
+    "real_browser_required": true,
+    "human_like_navigation_required": true,
+    "must_visit_real_routes": true,
+    "must_capture_visual_evidence": true,
+    "must_capture_interaction_trace": true,
+    "must_capture_console_and_network_logs": true,
+    "must_not_accept_static_or_code_only_review": true
+  },
+  "failure_report_requirements": {
+    "must_report_each_failure": true,
+    "precise_location_required": true,
+    "required_failure_fields": [
+      "failure_id",
+      "acceptance_id",
+      "page_id",
+      "route_or_url",
+      "role",
+      "location",
+      "selector_or_visible_text",
+      "reproduction_steps",
+      "expected_result",
+      "actual_result",
+      "severity",
+      "evidence_refs",
+      "console_error_refs",
+      "network_error_refs",
+      "suggested_fix_scope"
+    ],
+    "location_precision_rule": "失败位置必须包含页面ID、路由、区域/控件/字段/按钮/表格列/弹窗/错误提示等，可使用selector、可见文案、截图坐标或步骤编号辅助定位，禁止模糊描述",
+    "evidence_link_required": true
+  },
+  "v5_patch_repair_report_requirements": {
+    "patch_repair_input_ready_required": true,
+    "one_failure_one_repair_item": true,
+    "required_patch_repair_fields": [
+      "repair_item_id",
+      "source_failure_id",
+      "acceptance_id",
+      "page_id",
+      "route_or_url",
+      "precise_location",
+      "reproduction_steps",
+      "expected_result",
+      "actual_result",
+      "evidence_refs",
+      "suspected_area",
+      "allowed_fix_scope",
+      "forbidden_fix_scope",
+      "regression_check"
+    ],
+    "must_include_original_acceptance_reference": true,
+    "must_include_evidence_package_refs": true
+  },
+  "task_id": "IDEA-20260730073439-OMBY9T"
+}
