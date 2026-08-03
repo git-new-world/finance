@@ -1,7 +1,62 @@
 {
   "framework": "react_vite",
-  "pages": [],
-  "generated_at": "2026-07-30T10:53:20.874077Z",
+  "pages": [
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/consult/ai/FeaturePanel.tsx"
+    },
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/daily_report/v6task_finance_task_010/FeaturePanel.tsx"
+    },
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/invoice/v6task_finance_task_008/FeaturePanel.tsx"
+    },
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/invoice_issuance/v6task_finance_task_012/FeaturePanel.tsx"
+    },
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/reports/v6task_finance_task_005/FeaturePanel.tsx"
+    },
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/risk/v6task_finance_task_014/FeaturePanel.tsx"
+    },
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/system/v6task_finance_task_001/FeaturePanel.tsx"
+    },
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/tax/v6task_finance_task_006/FeaturePanel.tsx"
+    },
+    {
+      "task_id": "FeaturePanel",
+      "label": "Featurepanel",
+      "route": "/featurepanel",
+      "path": "frontend/src/features/voucher/v6task_finance_task_003/FeaturePanel.tsx"
+    }
+  ],
+  "generated_at": "2026-08-03T03:20:59.941194Z",
   "assembly_authorities": {
     "primary": "engineering_baseline.json",
     "secondary": "task_manifest.json",
