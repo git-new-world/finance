@@ -1,7 +1,97 @@
 {
   "framework": "react_vite",
-  "pages": [],
-  "generated_at": "2026-08-16T03:57:18.662217Z",
+  "pages": [
+    {
+      "task_id": "consult-ai",
+      "label": "Consult Ai",
+      "route": "/consult-ai",
+      "path": "frontend/src/features/consult/ai/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/ai-consult"
+      ]
+    },
+    {
+      "task_id": "v6task_finance_task_010",
+      "label": "V6Task Finance Task 010",
+      "route": "/v6task_finance_task_010",
+      "path": "frontend/src/features/daily_report/v6task_finance_task_010/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/daily-dashboard"
+      ]
+    },
+    {
+      "task_id": "v6task_finance_task_008",
+      "label": "V6Task Finance Task 008",
+      "route": "/v6task_finance_task_008",
+      "path": "frontend/src/features/invoice/v6task_finance_task_008/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/invoice-recognition"
+      ]
+    },
+    {
+      "task_id": "v6task_finance_task_012",
+      "label": "V6Task Finance Task 012",
+      "route": "/v6task_finance_task_012",
+      "path": "frontend/src/features/invoice_issuance/v6task_finance_task_012/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/invoice-issuance",
+        "/document-generation"
+      ]
+    },
+    {
+      "task_id": "v6task_finance_task_005",
+      "label": "V6Task Finance Task 005",
+      "route": "/v6task_finance_task_005",
+      "path": "frontend/src/features/reports/v6task_finance_task_005/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/reports/standard",
+        "/reports/custom"
+      ]
+    },
+    {
+      "task_id": "v6task_finance_task_014",
+      "label": "V6Task Finance Task 014",
+      "route": "/v6task_finance_task_014",
+      "path": "frontend/src/features/risk/v6task_finance_task_014/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/risk-overview"
+      ]
+    },
+    {
+      "task_id": "v6task_finance_task_001",
+      "label": "V6Task Finance Task 001",
+      "route": "/v6task_finance_task_001",
+      "path": "frontend/src/features/system/v6task_finance_task_001/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/admin/settings",
+        "/admin/datasources",
+        "/admin/logs"
+      ]
+    },
+    {
+      "task_id": "v6task_finance_task_006",
+      "label": "V6Task Finance Task 006",
+      "route": "/v6task_finance_task_006",
+      "path": "frontend/src/features/tax/v6task_finance_task_006/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/tax-filing",
+        "/tax-records"
+      ]
+    },
+    {
+      "task_id": "voucher-page-001_page-002_page-003_page-004_api",
+      "label": "Voucher Page 001 Page 002 Page 003 Page 004 Api",
+      "route": "/voucher-page-001_page-002_page-003_page-004_api",
+      "path": "frontend/src/features/voucher/page-001_page-002_page-003_page-004_api/FeaturePanel.tsx",
+      "acceptance_aliases": [
+        "/bank-stream-sync",
+        "/vouchers",
+        "/voucher-review",
+        "/voucher-history"
+      ]
+    }
+  ],
+  "generated_at": "2026-08-16T03:57:46.719256Z",
   "assembly_authorities": {
     "primary": "engineering_baseline.json",
     "secondary": "task_manifest.json",

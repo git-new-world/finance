@@ -20,5 +20,9 @@
     "axios": "latest",
     "dayjs": "latest",
     "moment": "latest"
+  },
+  "devDependencies": {
+    "@testing-library/react": "latest",
+    "vitest": "latest"
   }
 }
