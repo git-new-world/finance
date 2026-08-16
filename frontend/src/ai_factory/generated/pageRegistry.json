@@ -1,7 +1,7 @@
 {
   "framework": "react_vite",
   "pages": [],
-  "generated_at": "2026-07-30T10:53:20.874077Z",
+  "generated_at": "2026-08-16T03:57:18.662217Z",
   "assembly_authorities": {
     "primary": "engineering_baseline.json",
     "secondary": "task_manifest.json",

@@ -204,7 +204,8 @@
       "backend/integrations",
       "frontend/src/pages",
       "frontend/src/components",
-      "frontend/src/features"
+      "frontend/src/features",
+      "backend/api"
     ],
     "tasker_readonly_files": [
       "frontend/tsconfig.json",
@@ -305,5 +306,10 @@
     "Do not modify the repository baseline working branch (target_branch) or commit SHA without explicit Integrator instruction."
   ],
   "_integrator_authority": "engineering_baseline_first",
-  "_integrator_source": "/tmp/baseline_IDEA-2026073_jt7zcxnd/engineering_baseline_0.json"
+  "_integrator_source": "/tmp/baseline_IDEA-2026073_jt7zcxnd/engineering_baseline_0.json",
+  "_scheduler_notes": {
+    "roots_updated_at": "2026-08-15T10:45:04.194363+00:00",
+    "roots_updated_by": "scheduler 方案B",
+    "roots_updated_reason": "finance A-6 9 custom_development 任务产物 backend/api 越界，Boss 批准方案 B"
+  }
 }
